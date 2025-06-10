@@ -8,4 +8,6 @@ public interface ProductService {
     ProductDto findById(Long id);
     ProductDto create(ProductDto productDto);
     void delete(Long id);
+    List<ProductDto> search(String query);
+
 }
