@@ -1,5 +1,6 @@
 package com.example.model.entity;
 
+import com.example.model.enums.PromotionType;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,9 +18,11 @@ public class Promotion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String type; // 折扣、特價、買一送一等
-    private int discountValue; // 若是打折（ex: 85折則填85），否則為0
-    private int finalPrice;    // 最終優惠價（無折扣可設為0）
+    @Enumerated(EnumType.STRING) // ✅ 改為 enum 並存為字串
+    private PromotionType type;
+
+    private Integer discountValue; // 若是打折（ex: 85折則填85），否則為0
+    private Integer finalPrice;    // 最終優惠價（無折扣可設為0）
     private String remark;
 
     private LocalDateTime startTime;
@@ -36,4 +39,4 @@ public class Promotion {
     @ManyToOne
     @JoinColumn(name = "store_id", nullable = false)
     private Store store;
-}
+} 

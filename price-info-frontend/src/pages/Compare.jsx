@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const Compare = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const [priceList, setPriceList] = useState([]);
   const [promotionList, setPromotionList] = useState([]);
@@ -30,6 +31,15 @@ const Compare = () => {
     <div className="p-6 space-y-6">
       <h1 className="text-2xl font-bold">📊 {product.name} - 比價與優惠</h1>
 
+      <div>
+        <button
+          className="bg-black text-white px-4 py-2 rounded mr-2"
+          onClick={() => navigate(`/add-promotion/${id}`)}
+        >
+          ➕ 新增優惠
+        </button>
+      </div>
+
       {promotionList.length > 0 && (
         <div>
           <h2 className="text-xl font-semibold mt-4">🔥 優惠資訊</h2>
@@ -38,10 +48,17 @@ const Compare = () => {
               <li key={promo.id} className="border p-3 rounded bg-yellow-50">
                 <p>商家：{promo.storeName}</p>
                 <p>
-                  優惠：{promo.type === 'DISCOUNT'
-                    ? `${promo.discountValue} 折`
+                  優惠：
+                  {promo.type === 'DISCOUNT'
+                    ? (
+                        <>
+                          {promo.discountValue} 折<br />
+                          最終價: {promo.finalPrice} 元
+                        </>
+                      )
                     : `特價 ${promo.finalPrice} 元`}
                 </p>
+                <p>期間：{promo.startTime?.slice(0,10)} ～ {promo.endTime?.slice(0,10)}</p>
                 <p>備註：{promo.remark || '—'}</p>
               </li>
             ))}
