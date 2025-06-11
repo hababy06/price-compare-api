@@ -345,3 +345,411 @@ com.example.controller.PriceInfoController#getAll() mapped.
 2025-06-11T01:34:47.910+08:00  INFO 19612 --- [price-compare-api] [RMI TCP Connection(20)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-06-11T01:34:47.913+08:00  INFO 19612 --- [price-compare-api] [RMI TCP Connection(20)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2025-06-11T01:34:47.933+08:00  INFO 19612 --- [price-compare-api] [RMI TCP Connection(20)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-06-11T01:34:51.089+08:00  INFO 20304 --- [price-compare-api] [main] com.example.PriceCompareApiApplication   : Starting PriceCompareApiApplication using Java 22.0.1 with PID 20304 (C:\eclipse-workspace\price-compare-api\target\classes started by user in C:\eclipse-workspace\price-compare-api)
+2025-06-11T01:34:51.092+08:00  INFO 20304 --- [price-compare-api] [main] com.example.PriceCompareApiApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-06-11T01:34:51.991+08:00  INFO 20304 --- [price-compare-api] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-11T01:34:52.080+08:00  INFO 20304 --- [price-compare-api] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 75 ms. Found 4 JPA repository interfaces.
+2025-06-11T01:34:52.659+08:00  INFO 20304 --- [price-compare-api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-06-11T01:34:52.680+08:00  INFO 20304 --- [price-compare-api] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-06-11T01:34:52.681+08:00  INFO 20304 --- [price-compare-api] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-06-11T01:34:52.768+08:00  INFO 20304 --- [price-compare-api] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-06-11T01:34:52.769+08:00  INFO 20304 --- [price-compare-api] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1624 ms
+2025-06-11T01:34:52.954+08:00  INFO 20304 --- [price-compare-api] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-11T01:34:53.029+08:00  INFO 20304 --- [price-compare-api] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.13.Final
+2025-06-11T01:34:53.091+08:00  INFO 20304 --- [price-compare-api] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-06-11T01:34:53.474+08:00  INFO 20304 --- [price-compare-api] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-11T01:34:53.518+08:00  INFO 20304 --- [price-compare-api] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-06-11T01:34:53.700+08:00  INFO 20304 --- [price-compare-api] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@32f308c6
+2025-06-11T01:34:53.702+08:00  INFO 20304 --- [price-compare-api] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-06-11T01:34:53.760+08:00  WARN 20304 --- [price-compare-api] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-06-11T01:34:53.762+08:00  WARN 20304 --- [price-compare-api] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-06-11T01:34:53.786+08:00  INFO 20304 --- [price-compare-api] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-06-11T01:34:54.910+08:00  INFO 20304 --- [price-compare-api] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-06-11T01:34:55.003+08:00  INFO 20304 --- [price-compare-api] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-11T01:34:55.550+08:00  WARN 20304 --- [price-compare-api] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-11T01:34:55.576+08:00  INFO 20304 --- [price-compare-api] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-06-11T01:34:56.052+08:00  INFO 20304 --- [price-compare-api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-06-11T01:34:56.062+08:00  INFO 20304 --- [price-compare-api] [main] com.example.PriceCompareApiApplication   : Started PriceCompareApiApplication in 5.611 seconds (process running for 6.402)
+2025-06-11T01:35:00.412+08:00  INFO 20304 --- [price-compare-api] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-06-11T01:35:00.412+08:00  INFO 20304 --- [price-compare-api] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-06-11T01:35:00.414+08:00  INFO 20304 --- [price-compare-api] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-06-11T09:37:13.261+08:00  WARN 20304 --- [price-compare-api] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=8h30s220ms607µs900ns).
+2025-06-11T10:03:25.679+08:00  INFO 20304 --- [price-compare-api] [RMI TCP Connection(39)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2025-06-11T10:03:25.683+08:00  INFO 20304 --- [price-compare-api] [RMI TCP Connection(39)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-11T10:03:25.691+08:00  INFO 20304 --- [price-compare-api] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-06-11T10:03:25.697+08:00  INFO 20304 --- [price-compare-api] [RMI TCP Connection(39)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-11T10:03:25.701+08:00  INFO 20304 --- [price-compare-api] [RMI TCP Connection(39)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-06-11T10:03:25.710+08:00  INFO 20304 --- [price-compare-api] [RMI TCP Connection(39)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-06-11T10:27:53.968+08:00  INFO 31248 --- [price-compare-api] [main] com.example.PriceCompareApiApplication   : Starting PriceCompareApiApplication using Java 22.0.1 with PID 31248 (C:\eclipse-workspace\price-compare-api\target\classes started by user in C:\eclipse-workspace\price-compare-api)
+2025-06-11T10:27:53.971+08:00  INFO 31248 --- [price-compare-api] [main] com.example.PriceCompareApiApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-06-11T10:27:55.232+08:00  INFO 31248 --- [price-compare-api] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-11T10:27:55.340+08:00  INFO 31248 --- [price-compare-api] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 86 ms. Found 4 JPA repository interfaces.
+2025-06-11T10:27:56.050+08:00  INFO 31248 --- [price-compare-api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-06-11T10:27:56.075+08:00  INFO 31248 --- [price-compare-api] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-06-11T10:27:56.075+08:00  INFO 31248 --- [price-compare-api] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-06-11T10:27:56.176+08:00  INFO 31248 --- [price-compare-api] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-06-11T10:27:56.177+08:00  INFO 31248 --- [price-compare-api] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2095 ms
+2025-06-11T10:27:56.413+08:00  INFO 31248 --- [price-compare-api] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-11T10:27:56.521+08:00  INFO 31248 --- [price-compare-api] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.13.Final
+2025-06-11T10:27:56.579+08:00  INFO 31248 --- [price-compare-api] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-06-11T10:27:57.008+08:00  INFO 31248 --- [price-compare-api] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-11T10:27:57.059+08:00  INFO 31248 --- [price-compare-api] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-06-11T10:27:57.310+08:00  INFO 31248 --- [price-compare-api] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4fea5ee0
+2025-06-11T10:27:57.313+08:00  INFO 31248 --- [price-compare-api] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-06-11T10:27:57.386+08:00  WARN 31248 --- [price-compare-api] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-06-11T10:27:57.388+08:00  WARN 31248 --- [price-compare-api] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-06-11T10:27:57.418+08:00  INFO 31248 --- [price-compare-api] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-06-11T10:27:58.704+08:00  INFO 31248 --- [price-compare-api] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-06-11T10:27:58.809+08:00  INFO 31248 --- [price-compare-api] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-11T10:27:59.569+08:00  WARN 31248 --- [price-compare-api] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-11T10:27:59.601+08:00  INFO 31248 --- [price-compare-api] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-06-11T10:28:00.335+08:00  INFO 31248 --- [price-compare-api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-06-11T10:28:00.345+08:00  INFO 31248 --- [price-compare-api] [main] com.example.PriceCompareApiApplication   : Started PriceCompareApiApplication in 7.076 seconds (process running for 7.911)
+2025-06-11T10:28:49.116+08:00  INFO 31248 --- [price-compare-api] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-06-11T10:28:49.116+08:00  INFO 31248 --- [price-compare-api] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-06-11T10:28:49.118+08:00  INFO 31248 --- [price-compare-api] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-06-11T10:57:05.184+08:00  INFO 31248 --- [price-compare-api] [RMI TCP Connection(34)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2025-06-11T10:57:05.189+08:00  INFO 31248 --- [price-compare-api] [RMI TCP Connection(34)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-11T10:57:05.196+08:00  INFO 31248 --- [price-compare-api] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-06-11T10:57:05.201+08:00  INFO 31248 --- [price-compare-api] [RMI TCP Connection(34)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-11T10:57:05.205+08:00  INFO 31248 --- [price-compare-api] [RMI TCP Connection(34)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-06-11T10:57:05.219+08:00  INFO 31248 --- [price-compare-api] [RMI TCP Connection(34)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-06-11T11:22:58.045+08:00  INFO 30068 --- [price-compare-api] [main] com.example.PriceCompareApiApplication   : Starting PriceCompareApiApplication using Java 22.0.1 with PID 30068 (C:\eclipse-workspace\price-compare-api\target\classes started by user in C:\eclipse-workspace\price-compare-api)
+2025-06-11T11:22:58.047+08:00  INFO 30068 --- [price-compare-api] [main] com.example.PriceCompareApiApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-06-11T11:22:59.055+08:00  INFO 30068 --- [price-compare-api] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-11T11:22:59.148+08:00  INFO 30068 --- [price-compare-api] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 79 ms. Found 4 JPA repository interfaces.
+2025-06-11T11:22:59.767+08:00  INFO 30068 --- [price-compare-api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-06-11T11:22:59.788+08:00  INFO 30068 --- [price-compare-api] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-06-11T11:22:59.789+08:00  INFO 30068 --- [price-compare-api] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-06-11T11:22:59.877+08:00  INFO 30068 --- [price-compare-api] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-06-11T11:22:59.877+08:00  INFO 30068 --- [price-compare-api] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1777 ms
+2025-06-11T11:23:00.063+08:00  INFO 30068 --- [price-compare-api] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-11T11:23:00.140+08:00  INFO 30068 --- [price-compare-api] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.13.Final
+2025-06-11T11:23:00.206+08:00  INFO 30068 --- [price-compare-api] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-06-11T11:23:00.570+08:00  INFO 30068 --- [price-compare-api] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-11T11:23:00.616+08:00  INFO 30068 --- [price-compare-api] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-06-11T11:23:00.821+08:00  INFO 30068 --- [price-compare-api] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4348fa35
+2025-06-11T11:23:00.824+08:00  INFO 30068 --- [price-compare-api] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-06-11T11:23:00.888+08:00  WARN 30068 --- [price-compare-api] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-06-11T11:23:00.890+08:00  WARN 30068 --- [price-compare-api] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-06-11T11:23:00.935+08:00  INFO 30068 --- [price-compare-api] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-06-11T11:23:02.598+08:00  INFO 30068 --- [price-compare-api] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-06-11T11:23:02.702+08:00  INFO 30068 --- [price-compare-api] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-11T11:23:03.346+08:00  WARN 30068 --- [price-compare-api] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-11T11:23:03.385+08:00  INFO 30068 --- [price-compare-api] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-06-11T11:23:03.951+08:00  INFO 30068 --- [price-compare-api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-06-11T11:23:03.962+08:00  INFO 30068 --- [price-compare-api] [main] com.example.PriceCompareApiApplication   : Started PriceCompareApiApplication in 6.403 seconds (process running for 7.256)
+2025-06-11T11:23:13.066+08:00  INFO 30068 --- [price-compare-api] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-06-11T11:23:13.066+08:00  INFO 30068 --- [price-compare-api] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-06-11T11:23:13.068+08:00  INFO 30068 --- [price-compare-api] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-06-11T12:02:06.034+08:00  INFO 30068 --- [price-compare-api] [RMI TCP Connection(46)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2025-06-11T12:02:06.040+08:00  INFO 30068 --- [price-compare-api] [RMI TCP Connection(46)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-11T12:02:06.050+08:00  INFO 30068 --- [price-compare-api] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-06-11T12:02:06.056+08:00  INFO 30068 --- [price-compare-api] [RMI TCP Connection(46)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-11T12:02:06.060+08:00  INFO 30068 --- [price-compare-api] [RMI TCP Connection(46)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-06-11T12:02:06.067+08:00  INFO 30068 --- [price-compare-api] [RMI TCP Connection(46)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-06-11T12:02:09.971+08:00  INFO 31636 --- [price-compare-api] [main] com.example.PriceCompareApiApplication   : Starting PriceCompareApiApplication using Java 22.0.1 with PID 31636 (C:\eclipse-workspace\price-compare-api\target\classes started by user in C:\eclipse-workspace\price-compare-api)
+2025-06-11T12:02:09.973+08:00  INFO 31636 --- [price-compare-api] [main] com.example.PriceCompareApiApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-06-11T12:02:10.988+08:00  INFO 31636 --- [price-compare-api] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-11T12:02:11.081+08:00  INFO 31636 --- [price-compare-api] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 80 ms. Found 4 JPA repository interfaces.
+2025-06-11T12:02:11.757+08:00  INFO 31636 --- [price-compare-api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-06-11T12:02:11.781+08:00  INFO 31636 --- [price-compare-api] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-06-11T12:02:11.781+08:00  INFO 31636 --- [price-compare-api] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-06-11T12:02:11.910+08:00  INFO 31636 --- [price-compare-api] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-06-11T12:02:11.910+08:00  INFO 31636 --- [price-compare-api] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1882 ms
+2025-06-11T12:02:12.118+08:00  INFO 31636 --- [price-compare-api] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-11T12:02:12.245+08:00  INFO 31636 --- [price-compare-api] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.13.Final
+2025-06-11T12:02:12.326+08:00  INFO 31636 --- [price-compare-api] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-06-11T12:02:12.786+08:00  INFO 31636 --- [price-compare-api] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-11T12:02:12.839+08:00  INFO 31636 --- [price-compare-api] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-06-11T12:02:13.120+08:00  INFO 31636 --- [price-compare-api] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@545604a9
+2025-06-11T12:02:13.124+08:00  INFO 31636 --- [price-compare-api] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-06-11T12:02:13.198+08:00  WARN 31636 --- [price-compare-api] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-06-11T12:02:13.200+08:00  WARN 31636 --- [price-compare-api] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-06-11T12:02:13.227+08:00  INFO 31636 --- [price-compare-api] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-06-11T12:02:14.494+08:00  INFO 31636 --- [price-compare-api] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-06-11T12:02:14.609+08:00  INFO 31636 --- [price-compare-api] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-11T12:02:15.166+08:00  WARN 31636 --- [price-compare-api] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-11T12:02:15.194+08:00  INFO 31636 --- [price-compare-api] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-06-11T12:02:15.552+08:00  WARN 31636 --- [price-compare-api] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'handlerExceptionResolver' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Failed to instantiate [org.springframework.web.servlet.HandlerExceptionResolver]: Factory method 'handlerExceptionResolver' threw exception with message: Ambiguous @ExceptionHandler method mapped for [ExceptionHandler{exceptionType=java.lang.Exception, mediaType=*/*}]: {public org.springframework.http.ResponseEntity com.example.handler.GlobalExceptionHandler.handleException(java.lang.Exception), public org.springframework.http.ResponseEntity com.example.handler.GlobalExceptionHandler.handleGenericException(java.lang.Exception)}
+2025-06-11T12:02:15.555+08:00  INFO 31636 --- [price-compare-api] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-11T12:02:15.558+08:00  INFO 31636 --- [price-compare-api] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-06-11T12:02:15.568+08:00  INFO 31636 --- [price-compare-api] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-06-11T12:02:15.571+08:00  INFO 31636 --- [price-compare-api] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-06-11T12:02:15.590+08:00  INFO 31636 --- [price-compare-api] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-06-11T12:02:15.629+08:00 ERROR 31636 --- [price-compare-api] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'handlerExceptionResolver' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Failed to instantiate [org.springframework.web.servlet.HandlerExceptionResolver]: Factory method 'handlerExceptionResolver' threw exception with message: Ambiguous @ExceptionHandler method mapped for [ExceptionHandler{exceptionType=java.lang.Exception, mediaType=*/*}]: {public org.springframework.http.ResponseEntity com.example.handler.GlobalExceptionHandler.handleException(java.lang.Exception), public org.springframework.http.ResponseEntity com.example.handler.GlobalExceptionHandler.handleGenericException(java.lang.Exception)}
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:657) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:645) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1367) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1197) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1221) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1187) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1122) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987) ~[spring-context-6.2.6.jar:6.2.6]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.6.jar:6.2.6]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1362) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1351) ~[spring-boot-3.4.5.jar:3.4.5]
+	at com.example.PriceCompareApiApplication.main(PriceCompareApiApplication.java:9) ~[classes/:na]
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.web.servlet.HandlerExceptionResolver]: Factory method 'handlerExceptionResolver' threw exception with message: Ambiguous @ExceptionHandler method mapped for [ExceptionHandler{exceptionType=java.lang.Exception, mediaType=*/*}]: {public org.springframework.http.ResponseEntity com.example.handler.GlobalExceptionHandler.handleException(java.lang.Exception), public org.springframework.http.ResponseEntity com.example.handler.GlobalExceptionHandler.handleGenericException(java.lang.Exception)}
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:199) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiateWithFactoryMethod(SimpleInstantiationStrategy.java:88) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:168) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653) ~[spring-beans-6.2.6.jar:6.2.6]
+	... 21 common frames omitted
+Caused by: java.lang.IllegalStateException: Ambiguous @ExceptionHandler method mapped for [ExceptionHandler{exceptionType=java.lang.Exception, mediaType=*/*}]: {public org.springframework.http.ResponseEntity com.example.handler.GlobalExceptionHandler.handleException(java.lang.Exception), public org.springframework.http.ResponseEntity com.example.handler.GlobalExceptionHandler.handleGenericException(java.lang.Exception)}
+	at org.springframework.web.method.annotation.ExceptionHandlerMethodResolver.addExceptionMapping(ExceptionHandlerMethodResolver.java:146) ~[spring-web-6.2.6.jar:6.2.6]
+	at org.springframework.web.method.annotation.ExceptionHandlerMethodResolver.<init>(ExceptionHandlerMethodResolver.java:99) ~[spring-web-6.2.6.jar:6.2.6]
+	at org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver.initExceptionHandlerAdviceCache(ExceptionHandlerExceptionResolver.java:320) ~[spring-webmvc-6.2.6.jar:6.2.6]
+	at org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver.afterPropertiesSet(ExceptionHandlerExceptionResolver.java:287) ~[spring-webmvc-6.2.6.jar:6.2.6]
+	at org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport.addDefaultHandlerExceptionResolvers(WebMvcConfigurationSupport.java:1084) ~[spring-webmvc-6.2.6.jar:6.2.6]
+	at org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport.handlerExceptionResolver(WebMvcConfigurationSupport.java:1025) ~[spring-webmvc-6.2.6.jar:6.2.6]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:171) ~[spring-beans-6.2.6.jar:6.2.6]
+	... 24 common frames omitted
+
+2025-06-11T12:04:11.667+08:00  INFO 7184 --- [price-compare-api] [main] com.example.PriceCompareApiApplication   : Starting PriceCompareApiApplication using Java 22.0.1 with PID 7184 (C:\eclipse-workspace\price-compare-api\target\classes started by user in C:\eclipse-workspace\price-compare-api)
+2025-06-11T12:04:11.672+08:00  INFO 7184 --- [price-compare-api] [main] com.example.PriceCompareApiApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-06-11T12:04:12.721+08:00  INFO 7184 --- [price-compare-api] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-11T12:04:12.813+08:00  INFO 7184 --- [price-compare-api] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 80 ms. Found 4 JPA repository interfaces.
+2025-06-11T12:04:13.423+08:00  INFO 7184 --- [price-compare-api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-06-11T12:04:13.445+08:00  INFO 7184 --- [price-compare-api] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-06-11T12:04:13.446+08:00  INFO 7184 --- [price-compare-api] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-06-11T12:04:13.542+08:00  INFO 7184 --- [price-compare-api] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-06-11T12:04:13.543+08:00  INFO 7184 --- [price-compare-api] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1779 ms
+2025-06-11T12:04:13.735+08:00  INFO 7184 --- [price-compare-api] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-11T12:04:13.812+08:00  INFO 7184 --- [price-compare-api] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.13.Final
+2025-06-11T12:04:13.875+08:00  INFO 7184 --- [price-compare-api] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-06-11T12:04:14.236+08:00  INFO 7184 --- [price-compare-api] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-11T12:04:14.283+08:00  INFO 7184 --- [price-compare-api] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-06-11T12:04:14.484+08:00  INFO 7184 --- [price-compare-api] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@716ae973
+2025-06-11T12:04:14.486+08:00  INFO 7184 --- [price-compare-api] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-06-11T12:04:14.553+08:00  WARN 7184 --- [price-compare-api] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-06-11T12:04:14.556+08:00  WARN 7184 --- [price-compare-api] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-06-11T12:04:14.579+08:00  INFO 7184 --- [price-compare-api] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-06-11T12:04:15.861+08:00  INFO 7184 --- [price-compare-api] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-06-11T12:04:15.960+08:00  INFO 7184 --- [price-compare-api] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-11T12:04:16.542+08:00  WARN 7184 --- [price-compare-api] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-11T12:04:16.569+08:00  INFO 7184 --- [price-compare-api] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-06-11T12:04:16.851+08:00  WARN 7184 --- [price-compare-api] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'handlerExceptionResolver' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Failed to instantiate [org.springframework.web.servlet.HandlerExceptionResolver]: Factory method 'handlerExceptionResolver' threw exception with message: Ambiguous @ExceptionHandler method mapped for [ExceptionHandler{exceptionType=java.lang.Exception, mediaType=*/*}]: {public org.springframework.http.ResponseEntity com.example.handler.GlobalExceptionHandler.handleGenericException(java.lang.Exception), public org.springframework.http.ResponseEntity com.example.handler.GlobalExceptionHandler.handleException(java.lang.Exception)}
+2025-06-11T12:04:16.853+08:00  INFO 7184 --- [price-compare-api] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-11T12:04:16.857+08:00  INFO 7184 --- [price-compare-api] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-06-11T12:04:16.865+08:00  INFO 7184 --- [price-compare-api] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-06-11T12:04:16.867+08:00  INFO 7184 --- [price-compare-api] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-06-11T12:04:16.882+08:00  INFO 7184 --- [price-compare-api] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-06-11T12:04:16.905+08:00 ERROR 7184 --- [price-compare-api] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'handlerExceptionResolver' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Failed to instantiate [org.springframework.web.servlet.HandlerExceptionResolver]: Factory method 'handlerExceptionResolver' threw exception with message: Ambiguous @ExceptionHandler method mapped for [ExceptionHandler{exceptionType=java.lang.Exception, mediaType=*/*}]: {public org.springframework.http.ResponseEntity com.example.handler.GlobalExceptionHandler.handleGenericException(java.lang.Exception), public org.springframework.http.ResponseEntity com.example.handler.GlobalExceptionHandler.handleException(java.lang.Exception)}
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:657) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:645) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1367) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1197) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1221) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1187) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1122) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987) ~[spring-context-6.2.6.jar:6.2.6]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.6.jar:6.2.6]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1362) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1351) ~[spring-boot-3.4.5.jar:3.4.5]
+	at com.example.PriceCompareApiApplication.main(PriceCompareApiApplication.java:9) ~[classes/:na]
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.web.servlet.HandlerExceptionResolver]: Factory method 'handlerExceptionResolver' threw exception with message: Ambiguous @ExceptionHandler method mapped for [ExceptionHandler{exceptionType=java.lang.Exception, mediaType=*/*}]: {public org.springframework.http.ResponseEntity com.example.handler.GlobalExceptionHandler.handleGenericException(java.lang.Exception), public org.springframework.http.ResponseEntity com.example.handler.GlobalExceptionHandler.handleException(java.lang.Exception)}
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:199) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiateWithFactoryMethod(SimpleInstantiationStrategy.java:88) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:168) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653) ~[spring-beans-6.2.6.jar:6.2.6]
+	... 21 common frames omitted
+Caused by: java.lang.IllegalStateException: Ambiguous @ExceptionHandler method mapped for [ExceptionHandler{exceptionType=java.lang.Exception, mediaType=*/*}]: {public org.springframework.http.ResponseEntity com.example.handler.GlobalExceptionHandler.handleGenericException(java.lang.Exception), public org.springframework.http.ResponseEntity com.example.handler.GlobalExceptionHandler.handleException(java.lang.Exception)}
+	at org.springframework.web.method.annotation.ExceptionHandlerMethodResolver.addExceptionMapping(ExceptionHandlerMethodResolver.java:146) ~[spring-web-6.2.6.jar:6.2.6]
+	at org.springframework.web.method.annotation.ExceptionHandlerMethodResolver.<init>(ExceptionHandlerMethodResolver.java:99) ~[spring-web-6.2.6.jar:6.2.6]
+	at org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver.initExceptionHandlerAdviceCache(ExceptionHandlerExceptionResolver.java:320) ~[spring-webmvc-6.2.6.jar:6.2.6]
+	at org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver.afterPropertiesSet(ExceptionHandlerExceptionResolver.java:287) ~[spring-webmvc-6.2.6.jar:6.2.6]
+	at org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport.addDefaultHandlerExceptionResolvers(WebMvcConfigurationSupport.java:1084) ~[spring-webmvc-6.2.6.jar:6.2.6]
+	at org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport.handlerExceptionResolver(WebMvcConfigurationSupport.java:1025) ~[spring-webmvc-6.2.6.jar:6.2.6]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:171) ~[spring-beans-6.2.6.jar:6.2.6]
+	... 24 common frames omitted
+
+2025-06-11T12:04:43.685+08:00  INFO 27900 --- [price-compare-api] [main] com.example.PriceCompareApiApplication   : Starting PriceCompareApiApplication using Java 22.0.1 with PID 27900 (C:\eclipse-workspace\price-compare-api\target\classes started by user in C:\eclipse-workspace\price-compare-api)
+2025-06-11T12:04:43.687+08:00  INFO 27900 --- [price-compare-api] [main] com.example.PriceCompareApiApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-06-11T12:04:44.882+08:00  INFO 27900 --- [price-compare-api] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-11T12:04:44.974+08:00  INFO 27900 --- [price-compare-api] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 78 ms. Found 4 JPA repository interfaces.
+2025-06-11T12:04:45.738+08:00  INFO 27900 --- [price-compare-api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-06-11T12:04:45.772+08:00  INFO 27900 --- [price-compare-api] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-06-11T12:04:45.773+08:00  INFO 27900 --- [price-compare-api] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-06-11T12:04:45.858+08:00  INFO 27900 --- [price-compare-api] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-06-11T12:04:45.859+08:00  INFO 27900 --- [price-compare-api] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2094 ms
+2025-06-11T12:04:46.058+08:00  INFO 27900 --- [price-compare-api] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-11T12:04:46.133+08:00  INFO 27900 --- [price-compare-api] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.13.Final
+2025-06-11T12:04:46.202+08:00  INFO 27900 --- [price-compare-api] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-06-11T12:04:46.593+08:00  INFO 27900 --- [price-compare-api] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-11T12:04:46.638+08:00  INFO 27900 --- [price-compare-api] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-06-11T12:04:46.869+08:00  INFO 27900 --- [price-compare-api] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@698ac187
+2025-06-11T12:04:46.871+08:00  INFO 27900 --- [price-compare-api] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-06-11T12:04:46.927+08:00  WARN 27900 --- [price-compare-api] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-06-11T12:04:46.929+08:00  WARN 27900 --- [price-compare-api] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-06-11T12:04:46.997+08:00  INFO 27900 --- [price-compare-api] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-06-11T12:04:48.311+08:00  INFO 27900 --- [price-compare-api] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-06-11T12:04:48.426+08:00  INFO 27900 --- [price-compare-api] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-11T12:04:49.034+08:00  WARN 27900 --- [price-compare-api] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-11T12:04:49.060+08:00  INFO 27900 --- [price-compare-api] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-06-11T12:04:49.366+08:00  WARN 27900 --- [price-compare-api] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'handlerExceptionResolver' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Failed to instantiate [org.springframework.web.servlet.HandlerExceptionResolver]: Factory method 'handlerExceptionResolver' threw exception with message: Ambiguous @ExceptionHandler method mapped for [ExceptionHandler{exceptionType=java.lang.Exception, mediaType=*/*}]: {public org.springframework.http.ResponseEntity com.example.handler.GlobalExceptionHandler.handleGenericException(java.lang.Exception), public org.springframework.http.ResponseEntity com.example.handler.GlobalExceptionHandler.handleException(java.lang.Exception)}
+2025-06-11T12:04:49.371+08:00  INFO 27900 --- [price-compare-api] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-11T12:04:49.375+08:00  INFO 27900 --- [price-compare-api] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-06-11T12:04:49.392+08:00  INFO 27900 --- [price-compare-api] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-06-11T12:04:49.394+08:00  INFO 27900 --- [price-compare-api] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-06-11T12:04:49.414+08:00  INFO 27900 --- [price-compare-api] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-06-11T12:04:49.451+08:00 ERROR 27900 --- [price-compare-api] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'handlerExceptionResolver' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Failed to instantiate [org.springframework.web.servlet.HandlerExceptionResolver]: Factory method 'handlerExceptionResolver' threw exception with message: Ambiguous @ExceptionHandler method mapped for [ExceptionHandler{exceptionType=java.lang.Exception, mediaType=*/*}]: {public org.springframework.http.ResponseEntity com.example.handler.GlobalExceptionHandler.handleGenericException(java.lang.Exception), public org.springframework.http.ResponseEntity com.example.handler.GlobalExceptionHandler.handleException(java.lang.Exception)}
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:657) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:645) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1367) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1197) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1221) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1187) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1122) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987) ~[spring-context-6.2.6.jar:6.2.6]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.6.jar:6.2.6]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1362) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1351) ~[spring-boot-3.4.5.jar:3.4.5]
+	at com.example.PriceCompareApiApplication.main(PriceCompareApiApplication.java:9) ~[classes/:na]
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.web.servlet.HandlerExceptionResolver]: Factory method 'handlerExceptionResolver' threw exception with message: Ambiguous @ExceptionHandler method mapped for [ExceptionHandler{exceptionType=java.lang.Exception, mediaType=*/*}]: {public org.springframework.http.ResponseEntity com.example.handler.GlobalExceptionHandler.handleGenericException(java.lang.Exception), public org.springframework.http.ResponseEntity com.example.handler.GlobalExceptionHandler.handleException(java.lang.Exception)}
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:199) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiateWithFactoryMethod(SimpleInstantiationStrategy.java:88) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:168) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653) ~[spring-beans-6.2.6.jar:6.2.6]
+	... 21 common frames omitted
+Caused by: java.lang.IllegalStateException: Ambiguous @ExceptionHandler method mapped for [ExceptionHandler{exceptionType=java.lang.Exception, mediaType=*/*}]: {public org.springframework.http.ResponseEntity com.example.handler.GlobalExceptionHandler.handleGenericException(java.lang.Exception), public org.springframework.http.ResponseEntity com.example.handler.GlobalExceptionHandler.handleException(java.lang.Exception)}
+	at org.springframework.web.method.annotation.ExceptionHandlerMethodResolver.addExceptionMapping(ExceptionHandlerMethodResolver.java:146) ~[spring-web-6.2.6.jar:6.2.6]
+	at org.springframework.web.method.annotation.ExceptionHandlerMethodResolver.<init>(ExceptionHandlerMethodResolver.java:99) ~[spring-web-6.2.6.jar:6.2.6]
+	at org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver.initExceptionHandlerAdviceCache(ExceptionHandlerExceptionResolver.java:320) ~[spring-webmvc-6.2.6.jar:6.2.6]
+	at org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver.afterPropertiesSet(ExceptionHandlerExceptionResolver.java:287) ~[spring-webmvc-6.2.6.jar:6.2.6]
+	at org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport.addDefaultHandlerExceptionResolvers(WebMvcConfigurationSupport.java:1084) ~[spring-webmvc-6.2.6.jar:6.2.6]
+	at org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport.handlerExceptionResolver(WebMvcConfigurationSupport.java:1025) ~[spring-webmvc-6.2.6.jar:6.2.6]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:171) ~[spring-beans-6.2.6.jar:6.2.6]
+	... 24 common frames omitted
+
+2025-06-11T12:06:39.247+08:00  INFO 2832 --- [price-compare-api] [main] com.example.PriceCompareApiApplication   : Starting PriceCompareApiApplication using Java 22.0.1 with PID 2832 (C:\eclipse-workspace\price-compare-api\target\classes started by user in C:\eclipse-workspace\price-compare-api)
+2025-06-11T12:06:39.250+08:00  INFO 2832 --- [price-compare-api] [main] com.example.PriceCompareApiApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-06-11T12:06:40.272+08:00  INFO 2832 --- [price-compare-api] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-11T12:06:40.381+08:00  INFO 2832 --- [price-compare-api] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 93 ms. Found 4 JPA repository interfaces.
+2025-06-11T12:06:41.225+08:00  INFO 2832 --- [price-compare-api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-06-11T12:06:41.258+08:00  INFO 2832 --- [price-compare-api] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-06-11T12:06:41.259+08:00  INFO 2832 --- [price-compare-api] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-06-11T12:06:41.391+08:00  INFO 2832 --- [price-compare-api] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-06-11T12:06:41.410+08:00  INFO 2832 --- [price-compare-api] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2079 ms
+2025-06-11T12:06:41.832+08:00  INFO 2832 --- [price-compare-api] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-11T12:06:41.911+08:00  INFO 2832 --- [price-compare-api] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.13.Final
+2025-06-11T12:06:41.965+08:00  INFO 2832 --- [price-compare-api] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-06-11T12:06:42.354+08:00  INFO 2832 --- [price-compare-api] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-11T12:06:42.405+08:00  INFO 2832 --- [price-compare-api] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-06-11T12:06:42.632+08:00  INFO 2832 --- [price-compare-api] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@403f7aa2
+2025-06-11T12:06:42.635+08:00  INFO 2832 --- [price-compare-api] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-06-11T12:06:42.698+08:00  WARN 2832 --- [price-compare-api] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-06-11T12:06:42.700+08:00  WARN 2832 --- [price-compare-api] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-06-11T12:06:42.723+08:00  INFO 2832 --- [price-compare-api] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-06-11T12:06:44.010+08:00  INFO 2832 --- [price-compare-api] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-06-11T12:06:44.110+08:00  INFO 2832 --- [price-compare-api] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-11T12:06:44.761+08:00  WARN 2832 --- [price-compare-api] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-11T12:06:44.790+08:00  INFO 2832 --- [price-compare-api] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-06-11T12:06:45.321+08:00  INFO 2832 --- [price-compare-api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-06-11T12:06:45.333+08:00  INFO 2832 --- [price-compare-api] [main] com.example.PriceCompareApiApplication   : Started PriceCompareApiApplication in 6.602 seconds (process running for 7.682)
+2025-06-11T12:06:58.835+08:00  INFO 2832 --- [price-compare-api] [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-06-11T12:06:58.836+08:00  INFO 2832 --- [price-compare-api] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-06-11T12:06:58.837+08:00  INFO 2832 --- [price-compare-api] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-06-11T12:11:06.029+08:00  INFO 2832 --- [price-compare-api] [RMI TCP Connection(10)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2025-06-11T12:11:06.032+08:00  INFO 2832 --- [price-compare-api] [RMI TCP Connection(10)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-11T12:11:06.037+08:00  INFO 2832 --- [price-compare-api] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-06-11T12:11:06.043+08:00  INFO 2832 --- [price-compare-api] [RMI TCP Connection(10)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-11T12:11:06.045+08:00  INFO 2832 --- [price-compare-api] [RMI TCP Connection(10)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-06-11T12:11:06.052+08:00  INFO 2832 --- [price-compare-api] [RMI TCP Connection(10)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
