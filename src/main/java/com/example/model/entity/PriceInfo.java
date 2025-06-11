@@ -33,6 +33,4 @@ public class PriceInfo {
     @JoinColumn(name = "store_id", nullable = false)
     private Store store;
 
-    // 可擴充回報者用戶
-    // private Long createdBy;
 }

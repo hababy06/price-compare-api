@@ -9,6 +9,12 @@ const Select = () => {
 
   return (
     <div className="p-6">
+      <button
+        onClick={() => navigate('/')}
+        className="mb-4 bg-gray-200 px-3 py-1 rounded"
+      >
+        ← 返回搜尋頁面
+      </button>
       <h1 className="text-2xl font-bold mb-4">請選擇正確商品</h1>
       {products.length === 0 ? (
         <p>沒有收到任何商品資料</p>

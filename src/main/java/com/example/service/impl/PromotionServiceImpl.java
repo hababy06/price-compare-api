@@ -65,26 +65,41 @@ public class PromotionServiceImpl implements PromotionService {
         Store store = storeRepo.findById(dto.getStoreId())
                 .orElseThrow(() -> new RuntimeException("找不到商店"));
 
-        // 自動計算打折後價格
-        if (dto.getType() == PromotionType.DISCOUNT && dto.getFinalPrice() == null) {
-            if (dto.getDiscountValue() == null) {
-                throw new RuntimeException("打折優惠需提供折數");
-            }
+        Integer finalPrice = null;
 
-            List<PriceInfo> priceList = priceInfoRepo.findByProductIdOrderByReportCountDescPriceAsc(dto.getProductId());
+        if (dto.getType() == PromotionType.DISCOUNT) {
+            // 查詢該商品在該商店的最新價格
+            List<PriceInfo> priceList = priceInfoRepo.findByProductIdAndStoreIdOrderByCreatedAtDesc(dto.getProductId(), dto.getStoreId());
             if (priceList.isEmpty()) {
                 throw new RuntimeException("找不到原價，無法計算折扣後價格");
             }
-
             int originalPrice = priceList.get(0).getPrice();
-            int discounted = Math.round(originalPrice * (dto.getDiscountValue() / 100f));
-            dto.setFinalPrice(discounted);
+            if (dto.getDiscountValue() == null) {
+                throw new RuntimeException("打折優惠需提供折數");
+            }
+            // 例如 85折 = 0.85
+            float discount;
+            if (dto.getDiscountValue() < 10) {
+                // 8 => 0.8
+                discount = dto.getDiscountValue() / 10f;
+            } else {
+                // 85 => 0.85
+                discount = dto.getDiscountValue() / 100f;
+            }
+            finalPrice = Math.round(originalPrice * discount);
+
+        } else if (dto.getType() == PromotionType.SPECIAL) {
+            // 特價直接用 discountValue 當 finalPrice
+            if (dto.getDiscountValue() == null) {
+                throw new RuntimeException("特價優惠需提供特價金額");
+            }
+            finalPrice = dto.getDiscountValue();
         }
 
         Promotion promotion = Promotion.builder()
                 .type(dto.getType())
                 .discountValue(dto.getDiscountValue())
-                .finalPrice(dto.getFinalPrice())
+                .finalPrice(finalPrice)
                 .remark(dto.getRemark())
                 .startTime(dto.getStartTime())
                 .endTime(dto.getEndTime())
