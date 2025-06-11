@@ -29,6 +29,12 @@ const Compare = () => {
 
   return (
     <div className="p-6 space-y-6">
+      <button
+        onClick={() => navigate('/')}
+        className="mb-4 bg-gray-200 px-3 py-1 rounded"
+      >
+        ← 返回搜尋頁面
+      </button>
       <h1 className="text-2xl font-bold">📊 {product.name} - 比價與優惠</h1>
 
       <div>

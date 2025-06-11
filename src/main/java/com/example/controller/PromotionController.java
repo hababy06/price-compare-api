@@ -1,12 +1,14 @@
 package com.example.controller;
 
 import com.example.model.dto.PromotionDto;
+import com.example.model.enums.PromotionType;
 import com.example.service.PromotionService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Tag(name = "優惠資訊", description = "商品在商店的優惠與活動資料")
@@ -28,6 +30,16 @@ public class PromotionController {
     @PostMapping("/{productId}/promotions")
     public PromotionDto createWithProduct(@PathVariable Long productId, @RequestBody PromotionDto dto) {
         dto.setProductId(productId);
+
+
+        // 優惠期限：要嘛兩個都填，要嘛兩個都不填（不確定）
+        if ((dto.getStartTime() == null && dto.getEndTime() != null) ||
+            (dto.getStartTime() != null && dto.getEndTime() == null)) {
+            // 若只填一個，視為不確定 → 皆設為 null
+            dto.setStartTime(null);
+            dto.setEndTime(null);
+        }
+
         return promotionService.create(dto);
     }
 
@@ -42,4 +54,4 @@ public class PromotionController {
     public List<PromotionDto> getAll() {
         return promotionService.findAll();
     }
-} 
+}

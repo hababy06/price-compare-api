@@ -84,4 +84,16 @@ public class PriceInfoServiceImpl implements PriceInfoService {
                 })
                 .toList();
     }
+
+    // ✅ 新增方法：指定商店的價格查詢（用於折扣計算）
+    public List<PriceInfoDto> findByProductAndStoreSorted(Long productId, Long storeId) {
+        return priceInfoRepo.findByProductIdAndStoreIdOrderByReportCountDescPriceAsc(productId, storeId)
+                .stream()
+                .map(p -> {
+                    PriceInfoDto dto = modelMapper.map(p, PriceInfoDto.class);
+                    dto.setStoreName(p.getStore().getName());
+                    return dto;
+                })
+                .toList();
+    }
 }
