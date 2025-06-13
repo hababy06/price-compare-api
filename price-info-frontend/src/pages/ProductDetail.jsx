@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { FaHome } from 'react-icons/fa';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -22,9 +23,10 @@ const ProductDetail = () => {
     <div className="p-6 space-y-6">
       <button
         onClick={() => navigate('/')}
-        className="mb-4 bg-gray-200 px-3 py-1 rounded"
+        className="mb-4 text-gray-600 hover:text-gray-900"
+        title="返回主頁"
       >
-        ← 返回搜尋頁面
+        <FaHome size={24} />
       </button>
       <h1 className="text-4xl font-bold">{product.name}</h1>
 

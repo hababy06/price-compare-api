@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { FaHome } from 'react-icons/fa';
 
 const Compare = () => {
   const { id } = useParams();
@@ -31,9 +32,10 @@ const Compare = () => {
     <div className="p-6 space-y-6">
       <button
         onClick={() => navigate('/')}
-        className="mb-4 bg-gray-200 px-3 py-1 rounded"
+        className="mb-4 text-gray-600 hover:text-gray-900"
+        title="返回主頁"
       >
-        ← 返回搜尋頁面
+        <FaHome size={24} />
       </button>
       <h1 className="text-2xl font-bold">📊 {product.name} - 比價與優惠</h1>
 
@@ -52,20 +54,37 @@ const Compare = () => {
           <ul className="space-y-2">
             {promotionList.map(promo => (
               <li key={promo.id} className="border p-3 rounded bg-yellow-50">
-                <p>商家：{promo.storeName}</p>
-                <p>
-                  優惠：
-                  {promo.type === 'DISCOUNT'
-                    ? (
-                        <>
-                          {promo.discountValue} 折<br />
-                          最終價: {promo.finalPrice} 元
-                        </>
-                      )
-                    : `特價 ${promo.finalPrice} 元`}
-                </p>
-                <p>期間：{promo.startTime?.slice(0,10)} ～ {promo.endTime?.slice(0,10)}</p>
-                <p>備註：{promo.remark || '—'}</p>
+                <div className="flex justify-between items-start">
+                  <div>
+                    <p className="font-bold">商家：{promo.storeName}</p>
+                    <p>
+                      優惠：
+                      {promo.type === 'DISCOUNT'
+                        ? (
+                            <>
+                              {promo.discountValue} 折<br />
+                              最終價: {promo.finalPrice} 元
+                            </>
+                          )
+                        : `特價 ${promo.finalPrice} 元`}
+                    </p>
+                    <p>期間：{promo.startTime?.slice(0,10)} ～ {promo.endTime?.slice(0,10)}</p>
+                    <p>備註：{promo.remark || '—'}</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-sm text-gray-600">
+                      👍 {promo.reportCount} 人回報
+                    </p>
+                    {promo.endTime && new Date(promo.endTime) < new Date() && (
+                      <p className="text-sm text-red-600">已過期</p>
+                    )}
+                    {promo.endTime && 
+                     new Date(promo.endTime) > new Date() && 
+                     new Date(promo.endTime) < new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) && (
+                      <p className="text-sm text-orange-600">即將結束</p>
+                    )}
+                  </div>
+                </div>
               </li>
             ))}
           </ul>
