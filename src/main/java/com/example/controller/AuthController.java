@@ -7,6 +7,7 @@ import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.Optional;
 
@@ -26,6 +27,21 @@ public class AuthController {
     @PostMapping("/login")
     public TokenResponse login(@RequestBody UserLoginDTO dto) {
         return userService.login(dto);
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletRequest request) {
+        return userService.logout(request);
+    }
+
+    @PostMapping("/forgot-password")
+    public ResponseEntity<?> forgotPassword(@RequestBody ForgotPasswordDTO dto) {
+        return userService.forgotPassword(dto);
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<?> resetPassword(@RequestBody ResetPasswordDTO dto) {
+        return userService.resetPassword(dto);
     }
 
     // 新增：Email 驗證 API，讓使用者點擊信件連結時使用
