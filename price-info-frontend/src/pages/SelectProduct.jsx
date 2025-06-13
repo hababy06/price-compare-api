@@ -1,6 +1,7 @@
 // src/pages/Select.jsx（或你對應的路徑）
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { FaHome } from 'react-icons/fa';
 
 const Select = () => {
   const location = useLocation();
@@ -11,9 +12,10 @@ const Select = () => {
     <div className="p-6">
       <button
         onClick={() => navigate('/')}
-        className="mb-4 bg-gray-200 px-3 py-1 rounded"
+        className="mb-4 text-gray-600 hover:text-gray-900"
+        title="返回主頁"
       >
-        ← 返回搜尋頁面
+        <FaHome size={24} />
       </button>
       <h1 className="text-2xl font-bold mb-4">請選擇正確商品</h1>
       {products.length === 0 ? (

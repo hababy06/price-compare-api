@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { authService } from '../services/authService';
 import {
     Box,
@@ -11,19 +11,20 @@ import {
     Link as MuiLink
 } from '@mui/material';
 
-const Login = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+const ForgotPassword = () => {
+    const [email, setEmail] = useState('');
     const [error, setError] = useState('');
-    const navigate = useNavigate();
+    const [success, setSuccess] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await authService.login(username, password);
-            navigate('/');
+            await authService.forgotPassword(email);
+            setSuccess(true);
+            setError('');
         } catch (err) {
-            setError(err.response?.data?.message || '登入失敗');
+            setError(err.response?.data?.message || '發送重置密碼郵件失敗');
+            setSuccess(false);
         }
     };
 
@@ -38,11 +39,16 @@ const Login = () => {
                 }}
             >
                 <Typography component="h1" variant="h5">
-                    登入
+                    忘記密碼
                 </Typography>
                 {error && (
                     <Alert severity="error" sx={{ mt: 2, width: '100%' }}>
                         {error}
+                    </Alert>
+                )}
+                {success && (
+                    <Alert severity="success" sx={{ mt: 2, width: '100%' }}>
+                        重置密碼郵件已發送，請檢查您的信箱
                     </Alert>
                 )}
                 <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
@@ -50,25 +56,13 @@ const Login = () => {
                         margin="normal"
                         required
                         fullWidth
-                        id="username"
-                        label="使用者名稱"
-                        name="username"
-                        autoComplete="username"
+                        id="email"
+                        label="電子郵件"
+                        name="email"
+                        autoComplete="email"
                         autoFocus
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                    <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="password"
-                        label="密碼"
-                        type="password"
-                        id="password"
-                        autoComplete="current-password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                     <Button
                         type="submit"
@@ -76,14 +70,11 @@ const Login = () => {
                         variant="contained"
                         sx={{ mt: 3, mb: 2 }}
                     >
-                        登入
+                        發送重置密碼郵件
                     </Button>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <MuiLink component={Link} to="/register" variant="body2">
-                            註冊新帳號
-                        </MuiLink>
-                        <MuiLink component={Link} to="/forgot-password" variant="body2">
-                            忘記密碼？
+                    <Box sx={{ textAlign: 'center' }}>
+                        <MuiLink component={Link} to="/login" variant="body2">
+                            返回登入
                         </MuiLink>
                     </Box>
                 </Box>
@@ -92,4 +83,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default ForgotPassword; 

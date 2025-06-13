@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.time.temporal.ChronoUnit;
 
 @Service
 public class PromotionServiceImpl implements PromotionService {
@@ -65,8 +66,116 @@ public class PromotionServiceImpl implements PromotionService {
         Store store = storeRepo.findById(dto.getStoreId())
                 .orElseThrow(() -> new RuntimeException("找不到商店"));
 
-        Integer finalPrice = null;
+        // 計算新優惠的最終價格
+        Integer finalPrice = calculateFinalPrice(dto, product, store);
 
+        // 查詢該商品在該商店的所有優惠
+        List<Promotion> existingPromotions = promotionRepo.findByProductIdAndStoreId(dto.getProductId(), dto.getStoreId());
+
+        // 尋找可以合併的優惠
+        for (Promotion existingPromo : existingPromotions) {
+            if (canMergePromotions(existingPromo, dto, finalPrice)) {
+                // 合併優惠
+                mergePromotions(existingPromo, dto, finalPrice);
+                Promotion saved = promotionRepo.save(existingPromo);
+                PromotionDto result = modelMapper.map(saved, PromotionDto.class);
+                result.setStoreName(saved.getStore().getName());
+                return result;
+            }
+        }
+
+        // 如果沒有找到可以合併的優惠，創建新的優惠
+        Promotion promotion = Promotion.builder()
+                .type(dto.getType())
+                .discountValue(dto.getDiscountValue())
+                .finalPrice(finalPrice)
+                .remark(dto.getRemark())
+                .startTime(dto.getStartTime())
+                .endTime(dto.getEndTime())
+                .reportCount(1)
+                .createdAt(LocalDateTime.now())
+                .product(product)
+                .store(store)
+                .build();
+
+        Promotion saved = promotionRepo.save(promotion);
+        PromotionDto result = modelMapper.map(saved, PromotionDto.class);
+        result.setStoreName(saved.getStore().getName());
+        return result;
+    }
+
+    private boolean canMergePromotions(Promotion existing, PromotionDto newPromo, Integer newFinalPrice) {
+        // 1. 檢查優惠類型是否相同
+        if (existing.getType() != newPromo.getType()) {
+            return false;
+        }
+
+        // 2. 檢查價格是否相近（允許 5% 的誤差）
+        if (existing.getFinalPrice() != null && newFinalPrice != null) {
+            double priceDiff = Math.abs(existing.getFinalPrice() - newFinalPrice);
+            double priceThreshold = existing.getFinalPrice() * 0.05; // 5% 誤差
+            if (priceDiff > priceThreshold) {
+                return false;
+            }
+        }
+
+        // 3. 檢查時間是否重疊或相近
+        if (existing.getStartTime() != null && existing.getEndTime() != null &&
+            newPromo.getStartTime() != null && newPromo.getEndTime() != null) {
+            // 檢查時間是否重疊
+            if (newPromo.getEndTime().isBefore(existing.getStartTime()) ||
+                newPromo.getStartTime().isAfter(existing.getEndTime())) {
+                // 如果時間不重疊，檢查是否相近（7天內）
+                if (Math.abs(ChronoUnit.DAYS.between(existing.getEndTime(), newPromo.getStartTime())) > 7 &&
+                    Math.abs(ChronoUnit.DAYS.between(existing.getStartTime(), newPromo.getEndTime())) > 7) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    private void mergePromotions(Promotion existing, PromotionDto newPromo, Integer newFinalPrice) {
+        // 1. 增加回報數
+        existing.setReportCount(existing.getReportCount() + 1);
+
+        // 2. 更新優惠時間
+        if (newPromo.getStartTime() != null && newPromo.getEndTime() != null) {
+            // 如果現有優惠沒有時間限制，直接使用新優惠的時間
+            if (existing.getStartTime() == null || existing.getEndTime() == null) {
+                existing.setStartTime(newPromo.getStartTime());
+                existing.setEndTime(newPromo.getEndTime());
+            } else {
+                // 取最早的開始時間和最晚的結束時間
+                existing.setStartTime(existing.getStartTime().isBefore(newPromo.getStartTime()) 
+                    ? existing.getStartTime() 
+                    : newPromo.getStartTime());
+                existing.setEndTime(existing.getEndTime().isAfter(newPromo.getEndTime()) 
+                    ? existing.getEndTime() 
+                    : newPromo.getEndTime());
+            }
+        }
+
+        // 3. 更新優惠價格（取最優惠的價格）
+        if (newFinalPrice != null) {
+            if (existing.getFinalPrice() == null || newFinalPrice < existing.getFinalPrice()) {
+                existing.setFinalPrice(newFinalPrice);
+                existing.setDiscountValue(newPromo.getDiscountValue());
+            }
+        }
+
+        // 4. 合併備註（如果新優惠有備註）
+        if (newPromo.getRemark() != null && !newPromo.getRemark().trim().isEmpty()) {
+            if (existing.getRemark() == null || existing.getRemark().trim().isEmpty()) {
+                existing.setRemark(newPromo.getRemark());
+            } else if (!existing.getRemark().contains(newPromo.getRemark())) {
+                existing.setRemark(existing.getRemark() + " | " + newPromo.getRemark());
+            }
+        }
+    }
+
+    private Integer calculateFinalPrice(PromotionDto dto, Product product, Store store) {
         if (dto.getType() == PromotionType.DISCOUNT) {
             // 查詢該商品在該商店的最新價格
             List<PriceInfo> priceList = priceInfoRepo.findByProductIdAndStoreIdOrderByCreatedAtDesc(dto.getProductId(), dto.getStoreId());
@@ -86,33 +195,15 @@ public class PromotionServiceImpl implements PromotionService {
                 // 85 => 0.85
                 discount = dto.getDiscountValue() / 100f;
             }
-            finalPrice = Math.round(originalPrice * discount);
-
+            return Math.round(originalPrice * discount);
         } else if (dto.getType() == PromotionType.SPECIAL) {
-            // 特價直接用 discountValue 當 finalPrice
-            if (dto.getDiscountValue() == null) {
+            // 特價直接使用 finalPrice
+            if (dto.getFinalPrice() == null) {
                 throw new RuntimeException("特價優惠需提供特價金額");
             }
-            finalPrice = dto.getDiscountValue();
+            return dto.getFinalPrice();
         }
-
-        Promotion promotion = Promotion.builder()
-                .type(dto.getType())
-                .discountValue(dto.getDiscountValue())
-                .finalPrice(finalPrice)
-                .remark(dto.getRemark())
-                .startTime(dto.getStartTime())
-                .endTime(dto.getEndTime())
-                .reportCount(1)
-                .createdAt(LocalDateTime.now())
-                .product(product)
-                .store(store)
-                .build();
-
-        Promotion saved = promotionRepo.save(promotion);
-        PromotionDto result = modelMapper.map(saved, PromotionDto.class);
-        result.setStoreName(saved.getStore().getName());
-        return result;
+        return null;
     }
 
     @Override

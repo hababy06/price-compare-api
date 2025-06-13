@@ -8,13 +8,18 @@ import com.example.repository.UserRepository;
 import com.example.service.UserService;
 import com.example.service.EmailService;
 import com.example.util.JwtUtil;
+import com.example.exception.AccountLockedException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import jakarta.servlet.http.HttpServletRequest;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.UUID;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -28,6 +33,15 @@ public class UserServiceImpl implements UserService {
     private JwtUtil jwtUtil;
     @Autowired
     private EmailService emailService;
+
+    private Map<String, Integer> loginAttempts = new ConcurrentHashMap<>();
+    private static final int MAX_ATTEMPTS = 5;
+
+    // 用於存儲登出後的 token
+    private static final ConcurrentHashMap<String, Long> tokenBlacklist = new ConcurrentHashMap<>();
+    
+    // 用於存儲密碼重置 token
+    private static final ConcurrentHashMap<String, Long> resetTokens = new ConcurrentHashMap<>();
 
     @Override
     public UserProfileDTO register(UserRegisterDTO dto) {
@@ -75,11 +89,19 @@ public class UserServiceImpl implements UserService {
         if (!passwordEncoder.matches(dto.getPassword(), user.getPassword())) {
             throw new RuntimeException("Password error");
         }
-        // 修正這邊 ↓
         if (!user.isEmailVerified()) {
             throw new RuntimeException("Email 尚未驗證，請先完成信箱驗證！");
         }
-        String token = jwtUtil.generateToken(user.getUsername());
+        if (loginAttempts.getOrDefault(dto.getUsername(), 0) >= MAX_ATTEMPTS) {
+            throw new AccountLockedException("帳號已被鎖定，請稍後再試");
+        }
+        String token = jwtUtil.generateToken(new org.springframework.security.core.userdetails.User(
+            user.getUsername(),
+            user.getPassword(),
+            user.getRoles().stream()
+                .map(role -> new org.springframework.security.core.authority.SimpleGrantedAuthority(role.getName()))
+                .collect(java.util.stream.Collectors.toList())
+        ));
         user.setLastLogin(LocalDateTime.now());
         userRepository.save(user);
         return new TokenResponse(token);
@@ -99,6 +121,56 @@ public class UserServiceImpl implements UserService {
         if (dto.getNickname() != null) user.setNickname(dto.getNickname());
         userRepository.save(user);
         return toProfileDTO(user);
+    }
+
+    @Override
+    public ResponseEntity<?> logout(HttpServletRequest request) {
+        String token = request.getHeader("Authorization").substring(7);
+        // 將 token 加入黑名單，設置 24 小時過期
+        tokenBlacklist.put(token, System.currentTimeMillis() + 86400000);
+        return ResponseEntity.ok().body("登出成功");
+    }
+
+    @Override
+    public ResponseEntity<?> forgotPassword(ForgotPasswordDTO dto) {
+        User user = userRepository.findByEmail(dto.getEmail())
+            .orElseThrow(() -> new RuntimeException("找不到該 email 的用戶"));
+            
+        // 生成重置密碼的 token
+        String resetToken = UUID.randomUUID().toString();
+        resetTokens.put(resetToken, System.currentTimeMillis() + 3600000); // 1小時過期
+        
+        // 發送重置密碼郵件
+        String resetLink = "http://your-frontend-url/reset-password?token=" + resetToken;
+        emailService.sendPasswordResetEmail(user.getEmail(), resetLink);
+        
+        return ResponseEntity.ok().body("密碼重置郵件已發送");
+    }
+
+    @Override
+    public ResponseEntity<?> resetPassword(ResetPasswordDTO dto) {
+        // 驗證 token
+        if (!resetTokens.containsKey(dto.getToken())) {
+            return ResponseEntity.badRequest().body("無效或過期的重置密碼連結");
+        }
+        
+        // 驗證密碼
+        if (!dto.getNewPassword().equals(dto.getConfirmPassword())) {
+            return ResponseEntity.badRequest().body("兩次輸入的密碼不一致");
+        }
+        
+        // 更新密碼
+        User user = userRepository.findByResetToken(dto.getToken())
+            .orElseThrow(() -> new RuntimeException("找不到對應的用戶"));
+            
+        user.setPassword(passwordEncoder.encode(dto.getNewPassword()));
+        user.setResetToken(null);
+        userRepository.save(user);
+        
+        // 移除已使用的 token
+        resetTokens.remove(dto.getToken());
+        
+        return ResponseEntity.ok().body("密碼重置成功");
     }
 
     private UserProfileDTO toProfileDTO(User user) {

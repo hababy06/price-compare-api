@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { FaHome } from 'react-icons/fa';
 
 function AddPromotionForm() {
   const { id } = useParams();
@@ -46,9 +47,10 @@ function AddPromotionForm() {
     <div>
       <button
         onClick={() => navigate('/')}
-        className="mb-4 bg-gray-200 px-3 py-1 rounded"
+        className="mb-4 text-gray-600 hover:text-gray-900"
+        title="返回主頁"
       >
-        ← 返回搜尋頁面
+        <FaHome size={24} />
       </button>
       <h2 className="text-2xl font-bold mb-4">為「可口可樂330ml」新增優惠</h2>
       <form onSubmit={handleSubmit} className="space-y-4">

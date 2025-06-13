@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { authService } from '../services/authService';
 import {
     Box,
@@ -7,31 +7,49 @@ import {
     TextField,
     Typography,
     Container,
-    Alert,
-    Link as MuiLink
+    Alert
 } from '@mui/material';
 
-const Register = () => {
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+const ResetPassword = () => {
+    const [searchParams] = useSearchParams();
+    const token = searchParams.get('token');
+    const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
+    const [success, setSuccess] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (password !== confirmPassword) {
+        if (newPassword !== confirmPassword) {
             setError('兩次輸入的密碼不一致');
             return;
         }
         try {
-            await authService.register(username, email, password);
-            navigate('/login');
+            await authService.resetPassword(token, newPassword, confirmPassword);
+            setSuccess(true);
+            setError('');
+            // 3秒後跳轉到登入頁面
+            setTimeout(() => {
+                navigate('/login');
+            }, 3000);
         } catch (err) {
-            setError(err.response?.data?.message || '註冊失敗');
+            setError(err.response?.data?.message || '重置密碼失敗');
+            setSuccess(false);
         }
     };
+
+    if (!token) {
+        return (
+            <Container component="main" maxWidth="xs">
+                <Box sx={{ mt: 8 }}>
+                    <Alert severity="error">
+                        無效的重置密碼連結
+                    </Alert>
+                </Box>
+            </Container>
+        );
+    }
 
     return (
         <Container component="main" maxWidth="xs">
@@ -44,11 +62,16 @@ const Register = () => {
                 }}
             >
                 <Typography component="h1" variant="h5">
-                    註冊新帳號
+                    重置密碼
                 </Typography>
                 {error && (
                     <Alert severity="error" sx={{ mt: 2, width: '100%' }}>
                         {error}
+                    </Alert>
+                )}
+                {success && (
+                    <Alert severity="success" sx={{ mt: 2, width: '100%' }}>
+                        密碼重置成功，即將跳轉到登入頁面
                     </Alert>
                 )}
                 <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
@@ -56,43 +79,19 @@ const Register = () => {
                         margin="normal"
                         required
                         fullWidth
-                        id="username"
-                        label="使用者名稱"
-                        name="username"
-                        autoComplete="username"
-                        autoFocus
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                    <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="email"
-                        label="電子郵件"
-                        name="email"
-                        autoComplete="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="password"
-                        label="密碼"
+                        name="newPassword"
+                        label="新密碼"
                         type="password"
-                        id="password"
-                        autoComplete="new-password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        id="newPassword"
+                        value={newPassword}
+                        onChange={(e) => setNewPassword(e.target.value)}
                     />
                     <TextField
                         margin="normal"
                         required
                         fullWidth
                         name="confirmPassword"
-                        label="確認密碼"
+                        label="確認新密碼"
                         type="password"
                         id="confirmPassword"
                         value={confirmPassword}
@@ -104,17 +103,12 @@ const Register = () => {
                         variant="contained"
                         sx={{ mt: 3, mb: 2 }}
                     >
-                        註冊
+                        重置密碼
                     </Button>
-                    <Box sx={{ textAlign: 'center' }}>
-                        <MuiLink component={Link} to="/login" variant="body2">
-                            已有帳號？立即登入
-                        </MuiLink>
-                    </Box>
                 </Box>
             </Box>
         </Container>
     );
 };
 
-export default Register;
+export default ResetPassword; 

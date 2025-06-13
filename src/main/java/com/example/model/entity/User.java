@@ -44,4 +44,7 @@ public class User {
 
     @Column
     private String emailVerifyToken; // 驗證用token，可選
+
+    @Column
+    private String resetToken;
 }
