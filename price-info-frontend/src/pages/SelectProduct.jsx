@@ -10,13 +10,7 @@ const Select = () => {
 
   return (
     <div className="p-6">
-      <button
-        onClick={() => navigate('/')}
-        className="mb-4 text-gray-600 hover:text-gray-900"
-        title="返回主頁"
-      >
-        <FaHome size={24} />
-      </button>
+    
       <h1 className="text-2xl font-bold mb-4">請選擇正確商品</h1>
       {products.length === 0 ? (
         <p>沒有收到任何商品資料</p>

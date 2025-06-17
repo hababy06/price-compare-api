@@ -60,6 +60,29 @@ public class PromotionServiceImpl implements PromotionService {
     }
 
     @Override
+    public PromotionDto checkSimilarPromotion(PromotionDto dto) {
+        // 查詢該商品在該商店的所有優惠
+        List<Promotion> existingPromotions = promotionRepo.findByProductIdAndStoreId(dto.getProductId(), dto.getStoreId());
+
+        // 計算新優惠的最終價格
+        Integer finalPrice = calculateFinalPrice(dto, 
+            productRepo.findById(dto.getProductId()).orElseThrow(() -> new RuntimeException("找不到商品")),
+            storeRepo.findById(dto.getStoreId()).orElseThrow(() -> new RuntimeException("找不到商店"))
+        );
+
+        // 尋找可以合併的優惠
+        for (Promotion existingPromo : existingPromotions) {
+            if (canMergePromotions(existingPromo, dto, finalPrice)) {
+                PromotionDto result = modelMapper.map(existingPromo, PromotionDto.class);
+                result.setStoreName(existingPromo.getStore().getName());
+                return result;
+            }
+        }
+
+        return null;
+    }
+
+    @Override
     public PromotionDto create(PromotionDto dto) {
         Product product = productRepo.findById(dto.getProductId())
                 .orElseThrow(() -> new RuntimeException("找不到商品"));
@@ -68,6 +91,27 @@ public class PromotionServiceImpl implements PromotionService {
 
         // 計算新優惠的最終價格
         Integer finalPrice = calculateFinalPrice(dto, product, store);
+
+        // 如果指定要強制新增或合併到特定優惠
+        if (dto.getForceNew() != null && dto.getForceNew()) {
+            return createNewPromotion(dto, product, store, finalPrice);
+        }
+
+        if (dto.getMergeWith() != null) {
+            Promotion existingPromo = promotionRepo.findById(dto.getMergeWith())
+                    .orElseThrow(() -> new RuntimeException("找不到要合併的優惠"));
+            
+            // 合併優惠
+            mergePromotions(existingPromo, dto, finalPrice);
+            if (dto.getAddRemark() != null && dto.getAddRemark() && dto.getRemark() != null) {
+                existingPromo.setRemark(existingPromo.getRemark() + " | " + dto.getRemark());
+            }
+            
+            Promotion saved = promotionRepo.save(existingPromo);
+            PromotionDto result = modelMapper.map(saved, PromotionDto.class);
+            result.setStoreName(saved.getStore().getName());
+            return result;
+        }
 
         // 查詢該商品在該商店的所有優惠
         List<Promotion> existingPromotions = promotionRepo.findByProductIdAndStoreId(dto.getProductId(), dto.getStoreId());
@@ -85,6 +129,10 @@ public class PromotionServiceImpl implements PromotionService {
         }
 
         // 如果沒有找到可以合併的優惠，創建新的優惠
+        return createNewPromotion(dto, product, store, finalPrice);
+    }
+
+    private PromotionDto createNewPromotion(PromotionDto dto, Product product, Store store, Integer finalPrice) {
         Promotion promotion = Promotion.builder()
                 .type(dto.getType())
                 .discountValue(dto.getDiscountValue())

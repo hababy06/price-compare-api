@@ -9,10 +9,9 @@ public class WebConfig implements WebMvcConfigurer {
     
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**") // 所有 API 都允許跨域
-                .allowedOrigins("http://localhost:5173") // React dev server
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                .allowedHeaders("*")
-                .allowCredentials(true);
+        registry.addMapping("/**")
+            .allowedOrigins("http://192.168.100.38:5173")
+            .allowedMethods("*")
+            .allowCredentials(true);
     }
 }

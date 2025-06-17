@@ -30,12 +30,7 @@ const Search = () => {
 
   return (
     <div className="p-6 relative">
-      <button
-        className="absolute top-6 right-6 bg-blue-600 text-white px-4 py-1 rounded"
-        onClick={() => navigate('/login')}
-      >
-        登入
-      </button>
+      
       <h1 className="text-2xl font-bold mb-4">商品搜尋</h1>
       <div className="flex gap-2">
         <input

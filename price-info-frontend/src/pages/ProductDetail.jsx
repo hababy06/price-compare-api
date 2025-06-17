@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaHome } from 'react-icons/fa';
+import { authService } from '../services/authService';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -17,17 +18,20 @@ const ProductDetail = () => {
       });
   }, [id]);
 
+  const handleAddPromotion = () => {
+    if (!authService.getCurrentUser()) {
+      alert('請先登入');
+      navigate('/login?redirect=' + encodeURIComponent(window.location.pathname));
+      return;
+    }
+    navigate(`/add-promotion/${product.id}`);
+  };
+
   if (!product) return <p className="p-6">載入中...</p>;
 
   return (
     <div className="p-6 space-y-6">
-      <button
-        onClick={() => navigate('/')}
-        className="mb-4 text-gray-600 hover:text-gray-900"
-        title="返回主頁"
-      >
-        <FaHome size={24} />
-      </button>
+      
       <h1 className="text-4xl font-bold">{product.name}</h1>
 
       <div className="flex gap-4">
@@ -40,9 +44,9 @@ const ProductDetail = () => {
 
         <button
           className="bg-black text-white px-4 py-2 rounded"
-          onClick={() => navigate(`/add-promotion/${product.id}`)}
+          onClick={handleAddPromotion}
         >
-          ➕ 新增優惠
+          ➕ 分享優惠
         </button>
       </div>
     </div>
