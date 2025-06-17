@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaHome } from 'react-icons/fa';
+import { authService } from "../services/authService";
 
 function AddPromotionForm() {
   const { id } = useParams();
@@ -18,6 +19,8 @@ function AddPromotionForm() {
     startTime: "",
     endTime: "",
   });
+  const [existingPromotion, setExistingPromotion] = useState(null);
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
 
   useEffect(() => {
     axios.get("/api/stores").then((res) => setStores(res.data));
@@ -25,6 +28,11 @@ function AddPromotionForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!authService.getCurrentUser()) {
+      alert('請先登入');
+      navigate('/login');
+      return;
+    }
 
     const payload = {
       ...form,
@@ -36,22 +44,80 @@ function AddPromotionForm() {
     };
 
     try {
-      await axios.post(`/api/promotion-info/${id}/promotions`, payload);
+      // 先檢查是否有相似的優惠
+      const user = authService.getCurrentUser();
+      const headers = user ? { Authorization: `Bearer ${user.token}` } : {};
+      const response = await axios.post(`/api/promotion-info/${id}/check-similar`, payload, { headers });
+      
+      if (response.data.similarPromotion) {
+        setExistingPromotion(response.data.similarPromotion);
+        setShowConfirmDialog(true);
+        return;
+      }
+
+      // 如果沒有相似的優惠，直接新增
+      await axios.post(`/api/promotion-info/${id}/promotions`, payload, { headers });
       navigate(`/compare/${id}`);
     } catch (err) {
-      alert("新增失敗");
+      if (err.response && err.response.data && (err.response.data.message || err.response.data.error)) {
+        alert('新增失敗：' + (err.response.data.message || err.response.data.error));
+      } else if (err.response && err.response.status) {
+        alert('新增失敗，狀態碼：' + err.response.status);
+      } else {
+        alert('新增失敗：' + err.message);
+      }
+    }
+  };
+
+  const handleConfirmAction = async (action) => {
+    try {
+      switch (action) {
+        case 'confirm':
+          // 直接合併優惠
+          await axios.post(`/api/promotion-info/${id}/promotions`, {
+            ...form,
+            productId: id,
+            discountValue: form.type === "DISCOUNT" ? parseInt(form.discountValue) : null,
+            finalPrice: form.type === "SPECIAL" ? parseInt(form.finalPrice) : null,
+            startTime: form.hasTimeLimit ? form.startTime || null : null,
+            endTime: form.hasTimeLimit ? form.endTime || null : null,
+            mergeWith: existingPromotion.id
+          });
+          break;
+        case 'addRemark':
+          // 合併優惠並添加備註
+          await axios.post(`/api/promotion-info/${id}/promotions`, {
+            ...form,
+            productId: id,
+            discountValue: form.type === "DISCOUNT" ? parseInt(form.discountValue) : null,
+            finalPrice: form.type === "SPECIAL" ? parseInt(form.finalPrice) : null,
+            startTime: form.hasTimeLimit ? form.startTime || null : null,
+            endTime: form.hasTimeLimit ? form.endTime || null : null,
+            mergeWith: existingPromotion.id,
+            addRemark: true
+          });
+          break;
+        case 'different':
+          // 新增為不同的優惠
+          await axios.post(`/api/promotion-info/${id}/promotions`, {
+            ...form,
+            productId: id,
+            discountValue: form.type === "DISCOUNT" ? parseInt(form.discountValue) : null,
+            finalPrice: form.type === "SPECIAL" ? parseInt(form.finalPrice) : null,
+            startTime: form.hasTimeLimit ? form.startTime || null : null,
+            endTime: form.hasTimeLimit ? form.endTime || null : null,
+            forceNew: true
+          });
+          break;
+      }
+      navigate(`/compare/${id}`);
+    } catch (err) {
+      alert("操作失敗");
     }
   };
 
   return (
     <div>
-      <button
-        onClick={() => navigate('/')}
-        className="mb-4 text-gray-600 hover:text-gray-900"
-        title="返回主頁"
-      >
-        <FaHome size={24} />
-      </button>
       <h2 className="text-2xl font-bold mb-4">為「可口可樂330ml」新增優惠</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -144,6 +210,54 @@ function AddPromotionForm() {
         <button type="submit">送出</button>
       </form>
       <button onClick={() => navigate(`/compare/${id}`)} className="mt-4">返回比價頁面</button>
+
+      {/* 確認對話框 */}
+      {showConfirmDialog && existingPromotion && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-6 rounded-lg max-w-lg w-full">
+            <h3 className="text-xl font-bold mb-4">發現相似的優惠</h3>
+            <div className="mb-4">
+              <p className="font-bold">現有優惠：</p>
+              <p>商家：{existingPromotion.storeName}</p>
+              <p>
+                優惠：
+                {existingPromotion.type === 'DISCOUNT'
+                  ? `${existingPromotion.discountValue} 折 (最終價: ${existingPromotion.finalPrice} 元)`
+                  : `特價 ${existingPromotion.finalPrice} 元`}
+              </p>
+              <p>期間：{existingPromotion.startTime?.slice(0,10)} ～ {existingPromotion.endTime?.slice(0,10)}</p>
+              <p>備註：{existingPromotion.remark || '—'}</p>
+              <p>👍 {existingPromotion.reportCount} 人回報</p>
+            </div>
+            <div className="flex flex-col gap-2">
+              <button
+                onClick={() => handleConfirmAction('confirm')}
+                className="bg-green-500 text-white px-4 py-2 rounded"
+              >
+                確認，這是相同的優惠
+              </button>
+              <button
+                onClick={() => handleConfirmAction('addRemark')}
+                className="bg-blue-500 text-white px-4 py-2 rounded"
+              >
+                我要新增備註
+              </button>
+              <button
+                onClick={() => handleConfirmAction('different')}
+                className="bg-gray-500 text-white px-4 py-2 rounded"
+              >
+                不，我的優惠不一樣
+              </button>
+              <button
+                onClick={() => setShowConfirmDialog(false)}
+                className="bg-red-500 text-white px-4 py-2 rounded"
+              >
+                取消
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

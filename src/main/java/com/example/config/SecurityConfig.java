@@ -1,6 +1,7 @@
 package com.example.config;
 
 import com.example.security.JwtAuthFilter;
+import com.example.handler.CustomAccessDeniedHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,9 +18,18 @@ public class SecurityConfig {
     @Autowired
     private JwtAuthFilter jwtAuthFilter;
 
+    @Autowired
+    private CustomAccessDeniedHandler customAccessDeniedHandler;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+        http
+            .cors()
+            .and()
+            .csrf().disable()
+            .exceptionHandling(e -> e
+                .accessDeniedHandler(customAccessDeniedHandler)
+            )
             .authorizeHttpRequests(auth -> auth
                 // 放行：登入 & Swagger
                 .requestMatchers(
@@ -37,7 +47,11 @@ public class SecurityConfig {
                     "/api/products/*",
                     "/api/price-info/*/prices",
                     "/api/promotion-info/*/promotions", // GET 取得優惠列表（注意POST需保護）
-                    "/api/stores"
+                    "/api/stores",
+                    "/api/promotion-likes/*/count",
+                    "/api/price-dislikes/*/count",
+                    "/api/price-likes/*/count",
+                    "/api/promotion-dislikes/*/count"
                 ).permitAll()
                 // 其他 API 需認證
                 .anyRequest().authenticated()

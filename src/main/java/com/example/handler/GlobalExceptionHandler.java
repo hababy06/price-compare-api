@@ -29,7 +29,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, String>> handleGenericException(Exception ex) {
         ex.printStackTrace();  // ✅ 印出錯誤
         Map<String, String> error = new HashMap<>();
-        error.put("error", ex.getMessage());
+        error.put("message", ex.getMessage());
         return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
