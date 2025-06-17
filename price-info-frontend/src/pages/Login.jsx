@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { authService } from '../services/authService';
 import {
     Box,
@@ -16,12 +16,15 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const location = useLocation();
+    const params = new URLSearchParams(location.search);
+    const redirect = params.get('redirect') || '/';
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             await authService.login(username, password);
-            navigate('/');
+            navigate(redirect);
         } catch (err) {
             setError(err.response?.data?.message || '登入失敗');
         }
