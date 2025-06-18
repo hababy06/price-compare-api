@@ -43,6 +43,7 @@ public class PromotionServiceImpl implements PromotionService {
                 .map(p -> {
                     PromotionDto dto = modelMapper.map(p, PromotionDto.class);
                     dto.setStoreName(p.getStore().getName());
+                    dto.setStoreLogoUrl(p.getStore().getLogoUrl());
                     return dto;
                 })
                 .toList();
@@ -54,6 +55,7 @@ public class PromotionServiceImpl implements PromotionService {
                 .map(p -> {
                     PromotionDto dto = modelMapper.map(p, PromotionDto.class);
                     dto.setStoreName(p.getStore().getName());
+                    dto.setStoreLogoUrl(p.getStore().getLogoUrl());
                     return dto;
                 })
                 .toList();
@@ -75,6 +77,7 @@ public class PromotionServiceImpl implements PromotionService {
             if (canMergePromotions(existingPromo, dto, finalPrice)) {
                 PromotionDto result = modelMapper.map(existingPromo, PromotionDto.class);
                 result.setStoreName(existingPromo.getStore().getName());
+                result.setStoreLogoUrl(existingPromo.getStore().getLogoUrl());
                 return result;
             }
         }
@@ -110,6 +113,7 @@ public class PromotionServiceImpl implements PromotionService {
             Promotion saved = promotionRepo.save(existingPromo);
             PromotionDto result = modelMapper.map(saved, PromotionDto.class);
             result.setStoreName(saved.getStore().getName());
+            result.setStoreLogoUrl(saved.getStore().getLogoUrl());
             return result;
         }
 
@@ -124,6 +128,7 @@ public class PromotionServiceImpl implements PromotionService {
                 Promotion saved = promotionRepo.save(existingPromo);
                 PromotionDto result = modelMapper.map(saved, PromotionDto.class);
                 result.setStoreName(saved.getStore().getName());
+                result.setStoreLogoUrl(saved.getStore().getLogoUrl());
                 return result;
             }
         }
@@ -149,6 +154,7 @@ public class PromotionServiceImpl implements PromotionService {
         Promotion saved = promotionRepo.save(promotion);
         PromotionDto result = modelMapper.map(saved, PromotionDto.class);
         result.setStoreName(saved.getStore().getName());
+        result.setStoreLogoUrl(saved.getStore().getLogoUrl());
         return result;
     }
 
@@ -260,6 +266,7 @@ public class PromotionServiceImpl implements PromotionService {
                 .map(p -> {
                     PromotionDto dto = modelMapper.map(p, PromotionDto.class);
                     dto.setStoreName(p.getStore().getName());
+                    dto.setStoreLogoUrl(p.getStore().getLogoUrl());
                     return dto;
                 })
                 .toList();

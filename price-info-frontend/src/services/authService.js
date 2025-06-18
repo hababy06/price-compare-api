@@ -68,4 +68,22 @@ export const authService = {
     getCurrentUser: () => {
         return JSON.parse(localStorage.getItem('user'));
     }
-}; 
+};
+
+// 檢查 URL 是否有 token
+const checkGoogleLogin = () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const token = urlParams.get('token');
+  
+  if (token) {
+    // 儲存 token
+    localStorage.setItem('token', token);
+    // 清除 URL 中的 token
+    window.history.replaceState({}, document.title, window.location.pathname);
+    // 重新載入頁面
+    window.location.reload();
+  }
+};
+
+// 在頁面載入時檢查
+checkGoogleLogin(); 

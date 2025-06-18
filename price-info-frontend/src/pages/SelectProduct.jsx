@@ -19,11 +19,14 @@ const Select = () => {
           {products.map((product) => (
             <li
               key={product.id}
-              className="border p-3 rounded cursor-pointer hover:bg-gray-100"
+              className="border p-3 rounded cursor-pointer hover:bg-gray-100 flex items-center gap-4"
               onClick={() => navigate(`/product/${product.id}`)}
             >
-              <p className="font-semibold">{product.name}</p>
-              <p className="text-sm text-gray-500">條碼：{product.barcode}</p>
+              <img src={product.imageUrl || 'https://dummyimage.com/300x300/cccccc/ffffff&text=No+Image'} alt={product.name} style={{height:48, width:48, objectFit:'cover', borderRadius:8}} onError={e => e.target.src='https://dummyimage.com/300x300/cccccc/ffffff&text=No+Image'} />
+              <div>
+                <p className="font-semibold">{product.name}</p>
+                <p className="text-sm text-gray-500">條碼：{product.barcode}</p>
+              </div>
             </li>
           ))}
         </ul>

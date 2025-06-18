@@ -29,8 +29,13 @@ const ProductDetail = () => {
 
   if (!product) return <p className="p-6">載入中...</p>;
 
+  const productImage = product.imageUrl || 'https://dummyimage.com/300x300/cccccc/ffffff&text=No+Image';
+
   return (
     <div className="p-6 space-y-6">
+      <div className="flex flex-col items-center mb-4">
+        <img src={productImage} alt={product.name} style={{height:96, width:96, objectFit:'cover', borderRadius:16}} onError={e => e.target.src='https://dummyimage.com/300x300/cccccc/ffffff&text=No+Image'} />
+      </div>
       
       <h1 className="text-4xl font-bold">{product.name}</h1>
 

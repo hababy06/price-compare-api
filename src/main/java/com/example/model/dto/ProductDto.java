@@ -10,4 +10,5 @@ public class ProductDto {
     private Long id;
     private String name;
     private String barcode;
+    private String imageUrl;
 }

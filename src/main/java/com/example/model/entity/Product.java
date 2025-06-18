@@ -19,4 +19,6 @@ public class Product {
     private String name;
 
     private String barcode;
+
+    private String imageUrl;
 }

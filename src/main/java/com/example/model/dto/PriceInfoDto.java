@@ -16,4 +16,6 @@ public class PriceInfoDto {
     private Long productId;
     private Long storeId;
     private String storeName;
+    private String productImageUrl;
+    private String storeLogoUrl;
 }

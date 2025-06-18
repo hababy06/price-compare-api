@@ -240,10 +240,14 @@ const Compare = () => {
 
   if (!product) return <p className="p-6">載入中...</p>;
 
+  // 商品圖片與名稱
+  const productImage = product.imageUrl || 'https://dummyimage.com/300x300/cccccc/ffffff&text=No+Image';
+
   return (
     <div className="p-6 space-y-6">
-      <div className="flex justify-between items-center mb-4">
-        
+      <div className="flex items-center gap-4 mb-4">
+        <img src={productImage} alt={product.name} style={{height:64, width:64, objectFit:'cover', borderRadius:12}} onError={e => e.target.src='https://dummyimage.com/300x300/cccccc/ffffff&text=No+Image'} />
+        <h1 className="text-3xl font-bold">{product.name}</h1>
       </div>
 
       <div>
@@ -263,7 +267,20 @@ const Compare = () => {
               <li key={promo.id} className="border p-3 rounded bg-yellow-50">
                 <div className="flex justify-between items-start">
                   <div>
-                    <p className="font-bold">商家：{promo.storeName}</p>
+                    <div className="flex items-center gap-2 mb-1">
+                      <img
+                        src={promo.storeLogoUrl || 'https://dummyimage.com/64x64/cccccc/ffffff&text=No+Logo'}
+                        alt={promo.storeName}
+                        style={{height:32, width:32, objectFit:'cover', borderRadius:6}}
+                        onError={e => {
+                          if (!e.target.dataset.fallback) {
+                            e.target.src = 'https://dummyimage.com/64x64/cccccc/ffffff&text=No+Logo';
+                            e.target.dataset.fallback = '1';
+                          }
+                        }}
+                      />
+                      <p className="font-bold">商家：{promo.storeName}</p>
+                    </div>
                     <p>
                       優惠：
                       {promo.type === 'DISCOUNT'
@@ -318,7 +335,20 @@ const Compare = () => {
         <ul className="space-y-2">
           {priceList.map(price => (
             <li key={price.id} className="border p-3 rounded">
-              <p>商家：{price.storeName}</p>
+              <div className="flex items-center gap-2 mb-1">
+                <img
+                  src={price.storeLogoUrl || 'https://dummyimage.com/64x64/cccccc/ffffff&text=No+Logo'}
+                  alt={price.storeName}
+                  style={{height:32, width:32, objectFit:'cover', borderRadius:6}}
+                  onError={e => {
+                    if (!e.target.dataset.fallback) {
+                      e.target.src = 'https://dummyimage.com/64x64/cccccc/ffffff&text=No+Logo';
+                      e.target.dataset.fallback = '1';
+                    }
+                  }}
+                />
+                <p>商家：{price.storeName}</p>
+              </div>
               <p>價格：${price.price}</p>
               <p style={{color: 'orange'}}>DEBUG: likeStatus[price-{price.id}] = {String(likeStatus[`price-${price.id}`])}</p>
               <button

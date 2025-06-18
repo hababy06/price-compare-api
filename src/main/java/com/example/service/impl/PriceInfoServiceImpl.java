@@ -36,6 +36,8 @@ public class PriceInfoServiceImpl implements PriceInfoService {
                 .map(p -> {
                     PriceInfoDto dto = modelMapper.map(p, PriceInfoDto.class);
                     dto.setStoreName(p.getStore().getName()); // ✅ 加上商店名稱
+                    dto.setProductImageUrl(p.getProduct().getImageUrl());
+                    dto.setStoreLogoUrl(p.getStore().getLogoUrl());
                     return dto;
                 })
                 .toList();
@@ -47,6 +49,8 @@ public class PriceInfoServiceImpl implements PriceInfoService {
                 .map(p -> {
                     PriceInfoDto dto = modelMapper.map(p, PriceInfoDto.class);
                     dto.setStoreName(p.getStore().getName()); // ✅ 加上商店名稱
+                    dto.setProductImageUrl(p.getProduct().getImageUrl());
+                    dto.setStoreLogoUrl(p.getStore().getLogoUrl());
                     return dto;
                 })
                 .toList();
@@ -70,6 +74,8 @@ public class PriceInfoServiceImpl implements PriceInfoService {
         PriceInfo saved = priceInfoRepo.save(priceInfo);
         PriceInfoDto resultDto = modelMapper.map(saved, PriceInfoDto.class);
         resultDto.setStoreName(saved.getStore().getName()); // ✅ 加上商店名稱
+        resultDto.setProductImageUrl(saved.getProduct().getImageUrl());
+        resultDto.setStoreLogoUrl(saved.getStore().getLogoUrl());
         return resultDto;
     }
 
@@ -80,6 +86,8 @@ public class PriceInfoServiceImpl implements PriceInfoService {
                 .map(p -> {
                     PriceInfoDto dto = modelMapper.map(p, PriceInfoDto.class);
                     dto.setStoreName(p.getStore().getName()); // ✅ 加上商店名稱
+                    dto.setProductImageUrl(p.getProduct().getImageUrl());
+                    dto.setStoreLogoUrl(p.getStore().getLogoUrl());
                     return dto;
                 })
                 .toList();
@@ -92,6 +100,8 @@ public class PriceInfoServiceImpl implements PriceInfoService {
                 .map(p -> {
                     PriceInfoDto dto = modelMapper.map(p, PriceInfoDto.class);
                     dto.setStoreName(p.getStore().getName());
+                    dto.setProductImageUrl(p.getProduct().getImageUrl());
+                    dto.setStoreLogoUrl(p.getStore().getLogoUrl());
                     return dto;
                 })
                 .toList();
