@@ -10,4 +10,5 @@ public interface PromotionService {
     PromotionDto create(PromotionDto dto);
     List<PromotionDto> findByProduct(Long productId);
     PromotionDto checkSimilarPromotion(PromotionDto dto);
+    List<PromotionDto> findByProductOrderByFinalPrice(Long productId);
 }

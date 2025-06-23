@@ -45,8 +45,16 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         // 產生 JWT token
         String token = jwtUtil.generateToken(userDetails);
         
-        // 重導向到前端，並帶上 token
-        String redirectUrl = "http://localhost:5173?token=" + token;
+        // 根據 Host 動態決定 redirectUrl
+        String host = request.getHeader("Host");
+        String redirectUrl;
+        if (host != null && host.contains("ngrok-free.app")) {
+            redirectUrl = "https://" + host + "?token=" + token;
+        } else if (host != null && host.contains("192.168.100.38")) {
+            redirectUrl = "http://192.168.100.38:5173?token=" + token;
+        } else {
+            redirectUrl = "http://localhost:5173?token=" + token;
+        }
         getRedirectStrategy().sendRedirect(request, response, redirectUrl);
     }
 }

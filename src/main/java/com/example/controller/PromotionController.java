@@ -27,6 +27,12 @@ public class PromotionController {
         return promotionService.findByProduct(productId);
     }
 
+    @Operation(summary = "查詢某商品的所有優惠資訊（按最終價格排序）")
+    @GetMapping("/{productId}/promotions/sorted-by-price")
+    public List<PromotionDto> getPromotionsSortedByPrice(@PathVariable Long productId) {
+        return promotionService.findByProductOrderByFinalPrice(productId);
+    }
+
     @Operation(summary = "檢查是否有相似的優惠")
     @PostMapping("/{productId}/check-similar")
     public Map<String, Object> checkSimilarPromotion(@PathVariable Long productId, @RequestBody PromotionDto dto) {

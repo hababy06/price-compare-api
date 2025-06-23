@@ -20,7 +20,7 @@ public class PromotionDislikeController {
     @Autowired
     private UserRepository userRepository;
 
-    @PostMapping("/{promotionId}")
+    @PostMapping("/{promotionId}/dislike")
     public ResponseEntity<?> dislikePromotion(@PathVariable Long promotionId, Authentication authentication) {
         String username = authentication.getName();
         User user = userRepository.findByUsername(username)

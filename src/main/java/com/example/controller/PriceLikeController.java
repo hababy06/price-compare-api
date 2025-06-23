@@ -20,7 +20,7 @@ public class PriceLikeController {
     @Autowired
     private UserRepository userRepository;
 
-    @PostMapping("/{priceId}")
+    @PostMapping("/{priceId}/like")
     public ResponseEntity<?> likePrice(@PathVariable Long priceId, Authentication authentication) {
         String username = authentication.getName();
         User user = userRepository.findByUsername(username)
@@ -30,7 +30,7 @@ public class PriceLikeController {
         return ResponseEntity.ok(Map.of("liked", liked));
     }
 
-    @DeleteMapping("/{priceId}")
+    @PostMapping("/{priceId}/unlike")
     public ResponseEntity<?> unlikePrice(@PathVariable Long priceId, Authentication authentication) {
         String username = authentication.getName();
         User user = userRepository.findByUsername(username)

@@ -9,6 +9,11 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
+import ReportError from './pages/ReportError';
+import AdminErrorReports from './pages/AdminErrorReports';
+import AdminUsers from './pages/AdminUsers';
+import AdminProducts from './pages/AdminProducts';
+import AdminStores from './pages/AdminStores';
 import { authService } from './services/authService';
 import Navbar from './components/Navbar';
 
@@ -25,7 +30,7 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <div style={{ paddingTop: '64px', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div style={{ paddingTop: '64px', minHeight: '100vh', width: '100%' }}>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -37,6 +42,11 @@ function App() {
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/compare/:id" element={<Compare />} />
           <Route path="/add-promotion/:id" element={<AddPromotionForm />} />
+          <Route path="/report-error/:type/:id" element={<ReportError />} />
+          <Route path="/admin/error-reports" element={<AdminErrorReports />} />
+          <Route path="/admin/users" element={<AdminUsers />} />
+          <Route path="/admin/products" element={<AdminProducts />} />
+          <Route path="/admin/stores" element={<AdminStores />} />
         </Routes>
       </div>
     </Router>

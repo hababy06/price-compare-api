@@ -20,14 +20,14 @@ public class PromotionLikeController {
         return userRepository.findByUsername(principal.getName()).orElseThrow().getId();
     }
 
-    @PostMapping("/{promotionId}")
+    @PostMapping("/{promotionId}/like")
     public Map<String, Object> like(@PathVariable Long promotionId, Principal principal) {
         Long userId = getUserId(principal);
         boolean result = likeService.like(userId, promotionId);
         return Map.of("liked", result);
     }
 
-    @DeleteMapping("/{promotionId}")
+    @PostMapping("/{promotionId}/unlike")
     public Map<String, Object> unlike(@PathVariable Long promotionId, Principal principal) {
         Long userId = getUserId(principal);
         boolean result = likeService.unlike(userId, promotionId);

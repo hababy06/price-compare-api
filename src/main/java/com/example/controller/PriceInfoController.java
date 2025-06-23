@@ -40,4 +40,9 @@ public class PriceInfoController {
     public List<PriceInfoDto> getPrices(@PathVariable Long productId) {
         return priceInfoService.findByProduct(productId);
     }
+
+    @GetMapping("/{productId}/prices/sorted-by-price")
+    public List<PriceInfoDto> getPricesSortedByPrice(@PathVariable Long productId) {
+        return priceInfoService.findByProductOrderByPrice(productId);
+    }
 }

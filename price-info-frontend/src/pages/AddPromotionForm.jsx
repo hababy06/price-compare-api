@@ -9,6 +9,8 @@ function AddPromotionForm() {
   const navigate = useNavigate();
 
   const [stores, setStores] = useState([]);
+  const [product, setProduct] = useState(null);
+  const [productError, setProductError] = useState("");
   const [form, setForm] = useState({
     storeId: "",
     type: "DISCOUNT",
@@ -24,7 +26,14 @@ function AddPromotionForm() {
 
   useEffect(() => {
     axios.get("/api/stores").then((res) => setStores(res.data));
-  }, []);
+    fetch(`/api/products/${id}`)
+      .then(res => {
+        if (!res.ok) throw new Error('商品載入失敗');
+        return res.json();
+      })
+      .then(data => setProduct(data))
+      .catch(() => setProductError("商品載入失敗，請稍後再試"));
+  }, [id]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -118,7 +127,10 @@ function AddPromotionForm() {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4">為「可口可樂330ml」新增優惠</h2>
+      {productError && <div className="text-red-500 mb-2">{productError}</div>}
+      <h2 className="text-2xl font-bold mb-4">
+        {product ? `為「${product.name}」新增優惠` : "新增優惠"}
+      </h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label>商家：</label>

@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080/api/auth';
+// 根據目前網址自動切換 API baseURL
+const API_BASE = window.location.origin;
+axios.defaults.baseURL = `${API_BASE}/api`;
+
+const API_URL = '/auth'; // 現在 baseURL 已經設定好了，這裡用相對路徑即可
 
 // 全域攔截器：遇到 401/403 自動登出
 axios.interceptors.response.use(
@@ -76,8 +80,8 @@ const checkGoogleLogin = () => {
   const token = urlParams.get('token');
   
   if (token) {
-    // 儲存 token
-    localStorage.setItem('token', token);
+    // 儲存 token 統一格式
+    localStorage.setItem('user', JSON.stringify({ token }));
     // 清除 URL 中的 token
     window.history.replaceState({}, document.title, window.location.pathname);
     // 重新載入頁面

@@ -20,7 +20,7 @@ public class PriceDislikeController {
     @Autowired
     private UserRepository userRepository;
 
-    @PostMapping("/{priceId}")
+    @PostMapping("/{priceId}/dislike")
     public ResponseEntity<?> dislikePrice(@PathVariable Long priceId, Authentication authentication) {
         String username = authentication.getName();
         User user = userRepository.findByUsername(username)

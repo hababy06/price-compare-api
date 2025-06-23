@@ -99,7 +99,7 @@ public class UserServiceImpl implements UserService {
             user.getUsername(),
             user.getPassword(),
             user.getRoles().stream()
-                .map(role -> new org.springframework.security.core.authority.SimpleGrantedAuthority(role.getName()))
+                .map(role -> new org.springframework.security.core.authority.SimpleGrantedAuthority("ROLE_" + role.getName()))
                 .collect(java.util.stream.Collectors.toList())
         ));
         user.setLastLogin(LocalDateTime.now());

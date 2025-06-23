@@ -1,7 +1,6 @@
-2025-06-18T09:21:17.481+08:00  WARN 26612 --- [price-compare-api] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=8h34m56s866ms251µs).
-2025-06-18T13:42:16.345+08:00  INFO 26612 --- [price-compare-api] [RMI TCP Connection(453)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
-2025-06-18T13:42:16.920+08:00  INFO 26612 --- [price-compare-api] [RMI TCP Connection(453)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2025-06-18T13:42:17.032+08:00  INFO 26612 --- [price-compare-api] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
-2025-06-18T13:42:17.188+08:00  INFO 26612 --- [price-compare-api] [RMI TCP Connection(453)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-06-18T13:42:17.381+08:00  INFO 26612 --- [price-compare-api] [RMI TCP Connection(453)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-06-18T13:42:17.424+08:00  INFO 26612 --- [price-compare-api] [RMI TCP Connection(453)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-06-23T16:34:24.330+08:00  INFO 4860 --- [price-compare-api] [RMI TCP Connection(1063)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2025-06-23T16:34:24.344+08:00  INFO 4860 --- [price-compare-api] [RMI TCP Connection(1063)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-23T16:34:24.405+08:00  INFO 4860 --- [price-compare-api] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-06-23T16:34:24.426+08:00  INFO 4860 --- [price-compare-api] [RMI TCP Connection(1063)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-23T16:34:24.428+08:00  INFO 4860 --- [price-compare-api] [RMI TCP Connection(1063)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-06-23T16:34:24.474+08:00  INFO 4860 --- [price-compare-api] [RMI TCP Connection(1063)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

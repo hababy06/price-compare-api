@@ -271,4 +271,16 @@ public class PromotionServiceImpl implements PromotionService {
                 })
                 .toList();
     }
+
+    @Override
+    public List<PromotionDto> findByProductOrderByFinalPrice(Long productId) {
+        return promotionRepo.findByProductIdOrderByFinalPriceAscReportCountDesc(productId).stream()
+                .map(p -> {
+                    PromotionDto dto = modelMapper.map(p, PromotionDto.class);
+                    dto.setStoreName(p.getStore().getName());
+                    dto.setStoreLogoUrl(p.getStore().getLogoUrl());
+                    return dto;
+                })
+                .toList();
+    }
 }

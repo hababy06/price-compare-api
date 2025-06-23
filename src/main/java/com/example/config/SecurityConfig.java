@@ -12,6 +12,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+import org.springframework.http.HttpMethod;
 
 @Configuration
 @EnableWebSecurity
@@ -35,29 +39,29 @@ public class SecurityConfig {
                 .accessDeniedHandler(customAccessDeniedHandler)
             )
             .authorizeHttpRequests(auth -> auth
-                // 放行：登入 & Swagger
+                .requestMatchers(HttpMethod.GET, "/api/report-error/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/api/report-error/**").authenticated()
                 .requestMatchers(
                     "/api/auth/**",
                     "/v3/api-docs/**",
                     "/swagger-ui/**",
                     "/swagger-ui.html",
                     "/swagger-resources/**",
-                    "/webjars/**",
-                    "/api/auth/**"
+                    "/webjars/**"
                 ).permitAll()
-                // 放行：查詢相關 API
                 .requestMatchers(
                     "/api/products/search",
                     "/api/products/*",
                     "/api/price-info/*/prices",
-                    "/api/promotion-info/*/promotions", // GET 取得優惠列表（注意POST需保護）
+                    "/api/price-info/*/prices/sorted-by-price",
+                    "/api/promotion-info/*/promotions",
+                    "/api/promotion-info/*/promotions/sorted-by-price",
                     "/api/stores",
                     "/api/promotion-likes/*/count",
                     "/api/price-dislikes/*/count",
                     "/api/price-likes/*/count",
                     "/api/promotion-dislikes/*/count"
                 ).permitAll()
-                // 其他 API 需認證
                 .anyRequest().authenticated()
             )
             .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -71,5 +75,19 @@ public class SecurityConfig {
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
+    }
+
+    @Bean
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.addAllowedOrigin("http://localhost:5173");
+        config.addAllowedOrigin("http://192.168.100.38:5173");
+        config.addAllowedOriginPattern("https://*.ngrok-free.app");
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("*");
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
     }
 }
