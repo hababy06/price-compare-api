@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+set-google-oauth-env.bat
+
+src/main/resources/application.properties
