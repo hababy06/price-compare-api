@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 
 @Tag(name = "優惠資訊", description = "商品在商店的優惠與活動資料")
 @RestController
@@ -38,10 +39,10 @@ public class PromotionController {
     public Map<String, Object> checkSimilarPromotion(@PathVariable Long productId, @RequestBody PromotionDto dto) {
         dto.setProductId(productId);
         PromotionDto similarPromotion = promotionService.checkSimilarPromotion(dto);
-        return Map.of(
-            "hasSimilar", similarPromotion != null,
-            "similarPromotion", similarPromotion
-        );
+        Map<String, Object> map = new HashMap<>();
+        map.put("hasSimilar", similarPromotion != null);
+        map.put("similarPromotion", similarPromotion);
+        return map;
     }
 
     @Operation(summary = "新增某商品的優惠資訊")

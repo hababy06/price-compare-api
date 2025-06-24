@@ -16,6 +16,9 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.web.AuthenticationEntryPoint;
+import javax.servlet.http.HttpServletResponse;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -60,7 +63,11 @@ public class SecurityConfig {
                     "/api/promotion-likes/*/count",
                     "/api/price-dislikes/*/count",
                     "/api/price-likes/*/count",
-                    "/api/promotion-dislikes/*/count"
+                    "/api/promotion-dislikes/*/count",
+                    "/api/price-likes/*/has-liked",
+                    "/api/price-dislikes/*/has-disliked",
+                    "/api/promotion-likes/*/has-liked",
+                    "/api/promotion-dislikes/*/has-disliked"
                 ).permitAll()
                 .anyRequest().authenticated()
             )
@@ -69,6 +76,23 @@ public class SecurityConfig {
             .oauth2Login(oauth2 -> oauth2
                 .successHandler(oauth2SuccessHandler)
             );
+
+        http.exceptionHandling()
+            .defaultAuthenticationEntryPointFor(
+                (request, response, authException) -> {
+                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                    response.setContentType("application/json");
+                    response.getWriter().write("{\"error\": \"Unauthorized\"}");
+                },
+                new AntPathRequestMatcher("/api/**")
+            )
+            .defaultAuthenticationEntryPointFor(
+                (request, response, authException) -> {
+                    response.sendRedirect("/login");
+                },
+                new AntPathRequestMatcher("/**")
+            );
+
         return http.build();
     }
 

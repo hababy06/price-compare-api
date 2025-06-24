@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BarcodeScanner from '../components/BarcodeScanner';
 import { FaSearch, FaBarcode, FaShoppingCart } from 'react-icons/fa';
+import axios from 'axios';
 
 const Search = () => {
   const [keyword, setKeyword] = useState('');
   const [showScanner, setShowScanner] = useState(false);
   const navigate = useNavigate();
+  const [results, setResults] = useState([]);
+  const [error, setError] = useState('');
 
   const handleSearch = async (inputKeyword) => {
     const searchValue = inputKeyword !== undefined ? inputKeyword : keyword;
@@ -16,8 +19,10 @@ const Search = () => {
     }
 
     try {
-      const res = await fetch(`/api/products/search?keyword=${encodeURIComponent(searchValue)}`);
-      const data = await res.json();
+      const res = await axios.get(`/products/search?keyword=${encodeURIComponent(searchValue)}`);
+      const data = res.data;
+      setResults(data);
+      setError('');
 
       if (data.length === 1) {
         navigate(`/product/${data[0].id}`);
@@ -26,9 +31,9 @@ const Search = () => {
       } else {
         alert('找不到商品');
       }
-    } catch (error) {
-      console.error('搜尋失敗:', error);
-      alert('搜尋過程發生錯誤，請稍後再試');
+    } catch (err) {
+      setError('搜尋結果發生錯誤，請稍後再試');
+      setResults([]);
     }
   };
 

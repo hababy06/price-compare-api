@@ -20,7 +20,7 @@ const AdminErrorReports = () => {
     try {
       const user = authService.getCurrentUser();
       const headers = user ? { Authorization: `Bearer ${user.token}` } : {};
-      const res = await axios.get('/api/report-error', { headers });
+      const res = await axios.get('/report-error', { headers });
       setReports(res.data);
       setLoading(false);
     } catch (err) {

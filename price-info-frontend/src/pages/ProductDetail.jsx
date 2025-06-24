@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaHome } from 'react-icons/fa';
 import { authService } from '../services/authService';
+import axios from 'axios';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -9,13 +10,9 @@ const ProductDetail = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`/api/products/${id}`)
-      .then(res => res.json())
-      .then(data => setProduct(data))
-      .catch(err => {
-        console.error('載入商品失敗', err);
-        alert('載入失敗，請稍後再試');
-      });
+    axios.get(`/products/${id}`)
+      .then(res => setProduct(res.data))
+      .catch(() => setProduct(null));
   }, [id]);
 
   const handleAddPromotion = () => {

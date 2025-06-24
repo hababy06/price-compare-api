@@ -15,7 +15,7 @@ const AdminUsers = () => {
     try {
       const user = authService.getCurrentUser();
       const headers = user ? { Authorization: `Bearer ${user.token}` } : {};
-      const res = await axios.get('/api/admin/users', { headers });
+      const res = await axios.get('/admin/users', { headers });
       setUsers(res.data);
     } catch (err) {
       setError('載入失敗');

@@ -40,7 +40,7 @@ const ReportError = () => {
       return;
     }
     try {
-      await axios.post('/api/report-error', {
+      await axios.post('/report-error', {
         targetId: id,
         targetType: type,
         errorType,

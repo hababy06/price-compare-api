@@ -25,14 +25,10 @@ function AddPromotionForm() {
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
 
   useEffect(() => {
-    axios.get("/api/stores").then((res) => setStores(res.data));
-    fetch(`/api/products/${id}`)
-      .then(res => {
-        if (!res.ok) throw new Error('商品載入失敗');
-        return res.json();
-      })
-      .then(data => setProduct(data))
-      .catch(() => setProductError("商品載入失敗，請稍後再試"));
+    axios.get("/stores").then((res) => setStores(res.data));
+    axios.get(`/products/${id}`)
+      .then(res => setProduct(res.data))
+      .catch(() => setProduct(null));
   }, [id]);
 
   const handleSubmit = async (e) => {
@@ -56,7 +52,7 @@ function AddPromotionForm() {
       // 先檢查是否有相似的優惠
       const user = authService.getCurrentUser();
       const headers = user ? { Authorization: `Bearer ${user.token}` } : {};
-      const response = await axios.post(`/api/promotion-info/${id}/check-similar`, payload, { headers });
+      const response = await axios.post(`/promotion-info/${id}/check-similar`, payload, { headers });
       
       if (response.data.similarPromotion) {
         setExistingPromotion(response.data.similarPromotion);
@@ -65,7 +61,7 @@ function AddPromotionForm() {
       }
 
       // 如果沒有相似的優惠，直接新增
-      await axios.post(`/api/promotion-info/${id}/promotions`, payload, { headers });
+      await axios.post(`/promotion-info/${id}/promotions`, payload, { headers });
       navigate(`/compare/${id}`);
     } catch (err) {
       if (err.response && err.response.data && (err.response.data.message || err.response.data.error)) {
@@ -83,7 +79,7 @@ function AddPromotionForm() {
       switch (action) {
         case 'confirm':
           // 直接合併優惠
-          await axios.post(`/api/promotion-info/${id}/promotions`, {
+          await axios.post(`/promotion-info/${id}/promotions`, {
             ...form,
             productId: id,
             discountValue: form.type === "DISCOUNT" ? parseInt(form.discountValue) : null,
@@ -95,7 +91,7 @@ function AddPromotionForm() {
           break;
         case 'addRemark':
           // 合併優惠並添加備註
-          await axios.post(`/api/promotion-info/${id}/promotions`, {
+          await axios.post(`/promotion-info/${id}/promotions`, {
             ...form,
             productId: id,
             discountValue: form.type === "DISCOUNT" ? parseInt(form.discountValue) : null,
@@ -108,7 +104,7 @@ function AddPromotionForm() {
           break;
         case 'different':
           // 新增為不同的優惠
-          await axios.post(`/api/promotion-info/${id}/promotions`, {
+          await axios.post(`/promotion-info/${id}/promotions`, {
             ...form,
             productId: id,
             discountValue: form.type === "DISCOUNT" ? parseInt(form.discountValue) : null,

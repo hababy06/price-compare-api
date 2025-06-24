@@ -14,7 +14,7 @@ const AdminStores = () => {
     try {
       const user = authService.getCurrentUser();
       const headers = user ? { Authorization: `Bearer ${user.token}` } : {};
-      const res = await axios.get('/api/admin/stores', { headers });
+      const res = await axios.get('/admin/stores', { headers });
       setStores(res.data);
     } catch {
       setError('載入失敗');
