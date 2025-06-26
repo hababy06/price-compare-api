@@ -44,6 +44,7 @@ public class PromotionServiceImpl implements PromotionService {
                     PromotionDto dto = modelMapper.map(p, PromotionDto.class);
                     dto.setStoreName(p.getStore().getName());
                     dto.setStoreLogoUrl(p.getStore().getLogoUrl());
+                    dto.setProductName(p.getProduct().getName());
                     return dto;
                 })
                 .toList();
@@ -56,6 +57,7 @@ public class PromotionServiceImpl implements PromotionService {
                     PromotionDto dto = modelMapper.map(p, PromotionDto.class);
                     dto.setStoreName(p.getStore().getName());
                     dto.setStoreLogoUrl(p.getStore().getLogoUrl());
+                    dto.setProductName(p.getProduct().getName());
                     return dto;
                 })
                 .toList();
@@ -78,6 +80,7 @@ public class PromotionServiceImpl implements PromotionService {
                 PromotionDto result = modelMapper.map(existingPromo, PromotionDto.class);
                 result.setStoreName(existingPromo.getStore().getName());
                 result.setStoreLogoUrl(existingPromo.getStore().getLogoUrl());
+                result.setProductName(existingPromo.getProduct().getName());
                 return result;
             }
         }
@@ -114,6 +117,7 @@ public class PromotionServiceImpl implements PromotionService {
             PromotionDto result = modelMapper.map(saved, PromotionDto.class);
             result.setStoreName(saved.getStore().getName());
             result.setStoreLogoUrl(saved.getStore().getLogoUrl());
+            result.setProductName(saved.getProduct().getName());
             return result;
         }
 
@@ -129,6 +133,7 @@ public class PromotionServiceImpl implements PromotionService {
                 PromotionDto result = modelMapper.map(saved, PromotionDto.class);
                 result.setStoreName(saved.getStore().getName());
                 result.setStoreLogoUrl(saved.getStore().getLogoUrl());
+                result.setProductName(saved.getProduct().getName());
                 return result;
             }
         }
@@ -155,6 +160,7 @@ public class PromotionServiceImpl implements PromotionService {
         PromotionDto result = modelMapper.map(saved, PromotionDto.class);
         result.setStoreName(saved.getStore().getName());
         result.setStoreLogoUrl(saved.getStore().getLogoUrl());
+        result.setProductName(saved.getProduct().getName());
         return result;
     }
 
@@ -267,6 +273,7 @@ public class PromotionServiceImpl implements PromotionService {
                     PromotionDto dto = modelMapper.map(p, PromotionDto.class);
                     dto.setStoreName(p.getStore().getName());
                     dto.setStoreLogoUrl(p.getStore().getLogoUrl());
+                    dto.setProductName(p.getProduct().getName());
                     return dto;
                 })
                 .toList();
@@ -279,6 +286,7 @@ public class PromotionServiceImpl implements PromotionService {
                     PromotionDto dto = modelMapper.map(p, PromotionDto.class);
                     dto.setStoreName(p.getStore().getName());
                     dto.setStoreLogoUrl(p.getStore().getLogoUrl());
+                    dto.setProductName(p.getProduct().getName());
                     return dto;
                 })
                 .toList();

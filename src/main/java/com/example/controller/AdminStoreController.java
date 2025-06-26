@@ -1,9 +1,8 @@
 package com.example.controller;
 
-import com.example.model.entity.Store;
-import com.example.repository.StoreRepository;
+import com.example.model.dto.StoreDto;
+import com.example.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,35 +13,30 @@ import java.util.List;
 @PreAuthorize("hasRole('ADMIN')")
 public class AdminStoreController {
     @Autowired
-    private StoreRepository storeRepository;
+    private StoreService storeService;
 
     @GetMapping
-    public List<Store> getAll() {
-        return storeRepository.findAll();
+    public List<StoreDto> getAllStores() {
+        return storeService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Store> getOne(@PathVariable Long id) {
-        return storeRepository.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public StoreDto getStore(@PathVariable Long id) {
+        return storeService.findById(id);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Store update) {
-        return storeRepository.findById(id).map(store -> {
-            store.setName(update.getName());
-            store.setAddress(update.getAddress());
-            store.setLogoUrl(update.getLogoUrl());
-            storeRepository.save(store);
-            return ResponseEntity.ok().body("商店已更新");
-        }).orElse(ResponseEntity.notFound().build());
+    @PostMapping
+    public StoreDto createStore(@RequestBody StoreDto storeDto) {
+        return storeService.create(storeDto);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id) {
-        if (!storeRepository.existsById(id)) return ResponseEntity.notFound().build();
-        storeRepository.deleteById(id);
-        return ResponseEntity.ok().body("商店已刪除");
+    public void deleteStore(@PathVariable Long id) {
+        storeService.delete(id);
+    }
+
+    @PutMapping("/{id}")
+    public StoreDto updateStore(@PathVariable Long id, @RequestBody StoreDto update) {
+        return storeService.update(id, update);
     }
 } 

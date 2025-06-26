@@ -136,6 +136,8 @@ const Navbar = () => {
             >
               <MenuItem component={Link} to="/admin/users" onClick={handleAdminClose}>👥 用戶管理</MenuItem>
               <MenuItem component={Link} to="/admin/products" onClick={handleAdminClose}>📦 商品管理</MenuItem>
+              <MenuItem component={Link} to="/admin/promotions" onClick={handleAdminClose}>💡 優惠管理</MenuItem>
+              <MenuItem component={Link} to="/admin/products/import" onClick={handleAdminClose}>⬆️ 商品匯入</MenuItem>
               <MenuItem component={Link} to="/admin/stores" onClick={handleAdminClose}>🏪 商店管理</MenuItem>
               <MenuItem component={Link} to="/admin/error-reports" onClick={handleAdminClose}>⚠️ 錯誤回報管理</MenuItem>
             </Menu>

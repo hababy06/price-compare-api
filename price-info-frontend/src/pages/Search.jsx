@@ -26,10 +26,14 @@ const Search = () => {
 
       if (data.length === 1) {
         navigate(`/product/${data[0].id}`);
+        setTimeout(() => window.location.reload(), 100);
       } else if (data.length > 1) {
         navigate('/select', { state: { products: data } });
+        setTimeout(() => window.location.reload(), 100);
       } else {
         alert('找不到商品');
+        navigate('/search');
+        setTimeout(() => window.location.reload(), 100);
       }
     } catch (err) {
       setError('搜尋結果發生錯誤，請稍後再試');
@@ -38,9 +42,11 @@ const Search = () => {
   };
 
   const handleBarcodeDetected = (barcode) => {
-    setKeyword(barcode);
     setShowScanner(false);
-    setTimeout(() => handleSearch(barcode), 100);
+    setTimeout(() => {
+      setKeyword(barcode);
+      handleSearch(barcode);
+    }, 300);
   };
 
   const handleShowScanner = () => {

@@ -69,6 +69,7 @@ public class SecurityConfig {
                     "/api/promotion-likes/*/has-liked",
                     "/api/promotion-dislikes/*/has-disliked"
                 ).permitAll()
+                .requestMatchers("/oauth2/**").permitAll()
                 .anyRequest().authenticated()
             )
             .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

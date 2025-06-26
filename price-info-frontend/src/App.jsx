@@ -14,6 +14,8 @@ import AdminErrorReports from './pages/AdminErrorReports';
 import AdminUsers from './pages/AdminUsers';
 import AdminProducts from './pages/AdminProducts';
 import AdminStores from './pages/AdminStores';
+import AdminProductImport from './pages/AdminProductImport';
+import AdminPromotions from './pages/AdminPromotions';
 import { authService } from './services/authService';
 import Navbar from './components/Navbar';
 
@@ -47,6 +49,8 @@ function App() {
           <Route path="/admin/users" element={<AdminUsers />} />
           <Route path="/admin/products" element={<AdminProducts />} />
           <Route path="/admin/stores" element={<AdminStores />} />
+          <Route path="/admin/products/import" element={<AdminProductImport />} />
+          <Route path="/admin/promotions" element={<AdminPromotions />} />
         </Routes>
       </div>
     </Router>

@@ -26,7 +26,7 @@ const AdminStores = () => {
     try {
       const user = authService.getCurrentUser();
       const headers = user ? { Authorization: `Bearer ${user.token}` } : {};
-      await axios.delete(`/api/admin/stores/${id}`, { headers });
+      await axios.delete(`/admin/stores/${id}`, { headers });
       setStores(stores.filter(s => s.id !== id));
     } catch {
       alert('刪除失敗');
@@ -40,7 +40,7 @@ const AdminStores = () => {
     try {
       const user = authService.getCurrentUser();
       const headers = user ? { Authorization: `Bearer ${user.token}` } : {};
-      await axios.put(`/api/admin/stores/${editStore.id}`, editStore, { headers });
+      await axios.put(`/admin/stores/${editStore.id}`, editStore, { headers });
       setStores(stores.map(s => s.id === editStore.id ? editStore : s));
       setEditStore(null);
     } catch {

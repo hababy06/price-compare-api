@@ -89,13 +89,6 @@ const Login = () => {
                             忘記密碼？
                         </MuiLink>
                     </Box>
-                    <button
-                        onClick={() => window.location.href = '/api/oauth2/authorization/google'}
-                        className="bg-white text-gray-700 px-4 py-2 rounded border flex items-center gap-2"
-                    >
-                        <img src="https://www.google.com/favicon.ico" alt="Google" className="w-5 h-5" />
-                        使用 Google 登入
-                    </button>
                 </Box>
             </Box>
         </Container>

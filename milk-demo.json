@@ -1,0 +1,102 @@
+[
+  {
+    "name": "義美鮮奶 936ml",
+    "barcode": "4710123456789",
+    "imageUrl": "",
+    "prices": [
+      {
+        "store": { "name": "7-11", "address": "台北市信義路100號", "logoUrl": "" },
+        "price": 85
+      },
+      {
+        "store": { "name": "全家", "address": "台北市忠孝東路200號", "logoUrl": "" },
+        "price": 83
+      },
+      {
+        "store": { "name": "OK超商", "address": "台北市南京東路300號", "logoUrl": "" },
+        "price": 82
+      }
+    ]
+  },
+  {
+    "name": "光泉鮮乳 936ml",
+    "barcode": "4719876543210",
+    "imageUrl": "",
+    "prices": [
+      {
+        "store": { "name": "7-11", "address": "台北市信義路100號", "logoUrl": "" },
+        "price": 82
+      },
+      {
+        "store": { "name": "全家", "address": "台北市忠孝東路200號", "logoUrl": "" },
+        "price": 80
+      },
+      {
+        "store": { "name": "OK超商", "address": "台北市南京東路300號", "logoUrl": "" },
+        "price": 79
+      }
+    ]
+  },
+  {
+    "name": "瑞穗鮮乳 1858ml",
+    "barcode": "4711122334455",
+    "imageUrl": "",
+    "prices": [
+      {
+        "store": { "name": "7-11", "address": "台北市信義路100號", "logoUrl": "" },
+        "price": 155
+      },
+      {
+        "store": { "name": "全家", "address": "台北市忠孝東路200號", "logoUrl": "" },
+        "price": 150
+      },
+      {
+        "store": { "name": "OK超商", "address": "台北市南京東路300號", "logoUrl": "" },
+        "price": 148
+      }
+    ]
+  },
+  {
+    "name": "高大鮮乳 936ml",
+    "barcode": "4712233445566",
+    "imageUrl": "",
+    "prices": [
+      {
+        "store": { "name": "7-11", "address": "台北市信義路100號", "logoUrl": "" },
+        "price": 90
+      },
+      {
+        "store": { "name": "全家", "address": "台北市忠孝東路200號", "logoUrl": "" },
+        "price": 88
+      },
+      {
+        "store": { "name": "OK超商", "address": "台北市南京東路300號", "logoUrl": "" },
+        "price": 87
+      }
+    ]
+  },
+  {
+    "name": "福樂鮮乳 936ml",
+    "barcode": "4713344556677",
+    "imageUrl": "",
+    "prices": [
+      { "store": { "name": "7-Eleven", "address": "台北市信義路100號", "logoUrl": "" }, "price": 84 },
+      { "store": { "name": "FamilyMart", "address": "台北市忠孝東路200號", "logoUrl": "" }, "price": 82 },
+      { "store": { "name": "萊爾富", "address": "台北市民生東路300號", "logoUrl": "" }, "price": 81 },
+      { "store": { "name": "家樂福", "address": "台北市復興南路400號", "logoUrl": "" }, "price": 80 },
+      { "store": { "name": "全聯", "address": "台北市羅斯福路500號", "logoUrl": "" }, "price": 79 }
+    ]
+  },
+  {
+    "name": "福樂鮮乳 1858ml",
+    "barcode": "4713344556688",
+    "imageUrl": "",
+    "prices": [
+      { "store": { "name": "7-Eleven", "address": "台北市信義路100號", "logoUrl": "" }, "price": 155 },
+      { "store": { "name": "FamilyMart", "address": "台北市忠孝東路200號", "logoUrl": "" }, "price": 152 },
+      { "store": { "name": "萊爾富", "address": "台北市民生東路300號", "logoUrl": "" }, "price": 150 },
+      { "store": { "name": "家樂福", "address": "台北市復興南路400號", "logoUrl": "" }, "price": 148 },
+      { "store": { "name": "全聯", "address": "台北市羅斯福路500號", "logoUrl": "" }, "price": 147 }
+    ]
+  }
+] 

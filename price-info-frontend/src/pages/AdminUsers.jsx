@@ -27,7 +27,7 @@ const AdminUsers = () => {
     try {
       const user = authService.getCurrentUser();
       const headers = user ? { Authorization: `Bearer ${user.token}` } : {};
-      await axios.delete(`/api/admin/users/${id}`, { headers });
+      await axios.delete(`/admin/users/${id}`, { headers });
       setUsers(users.filter(u => u.id !== id));
     } catch {
       alert('刪除失敗');
@@ -39,7 +39,7 @@ const AdminUsers = () => {
     try {
       const user = authService.getCurrentUser();
       const headers = user ? { Authorization: `Bearer ${user.token}` } : {};
-      await axios.put(`/api/admin/users/${id}/status?status=${newStatus}`, {}, { headers });
+      await axios.put(`/admin/users/${id}/status?status=${newStatus}`, {}, { headers });
       setUsers(users.map(u => u.id === id ? { ...u, status: newStatus } : u));
     } catch {
       alert('狀態切換失敗');

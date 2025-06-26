@@ -322,23 +322,23 @@ const Compare = () => {
         />
 
         {/* 優惠資訊區塊 */}
-        {promotionList.length > 0 && (
-          <div className="mb-8">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-gray-800 flex items-center">
-                <FaFire className="h-6 w-6 text-orange-500 mr-3" />
-                優惠資訊
-              </h2>
-              <button
-                onClick={handleAddPromotion}
-                className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center gap-2"
-              >
-                <FaPlus className="h-4 w-4" />
-                分享優惠
-              </button>
-            </div>
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold text-gray-800 flex items-center">
+              <FaFire className="h-6 w-6 text-orange-500 mr-3" />
+              優惠資訊
+            </h2>
+            <button
+              onClick={handleAddPromotion}
+              className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center gap-2"
+            >
+              <FaPlus className="h-4 w-4" />
+              分享優惠
+            </button>
+          </div>
 
-            {view === 'grid' ? (
+          {promotionList.length > 0 ? (
+            view === 'grid' ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {promotionList.map((promo, index) => (
                   <PromotionCard
@@ -374,9 +374,11 @@ const Compare = () => {
                   />
                 ))}
               </div>
-            )}
-          </div>
-        )}
+            )
+          ) : (
+            <div className="text-gray-500 text-center py-8">目前尚無優惠，歡迎成為第一個分享優惠的人！</div>
+          )}
+        </div>
 
         {/* 商店價格區塊 */}
         {priceList.length > 0 && (

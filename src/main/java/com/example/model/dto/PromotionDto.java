@@ -23,6 +23,7 @@ public class PromotionDto {
     private Long storeId;
     private String storeName; // ✅ 顯示用
     private String storeLogoUrl;
+    private String productName; // 新增：商品名稱
     
     // 新增欄位
     private Boolean forceNew;      // 是否強制新增為新優惠

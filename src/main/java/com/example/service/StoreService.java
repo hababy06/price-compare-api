@@ -9,4 +9,5 @@ public interface StoreService {
     StoreDto findById(Long id);
     StoreDto create(StoreDto storeDto);
     void delete(Long id);
+    StoreDto update(Long id, StoreDto update);
 }

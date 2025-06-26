@@ -26,7 +26,7 @@ const AdminProducts = () => {
     try {
       const user = authService.getCurrentUser();
       const headers = user ? { Authorization: `Bearer ${user.token}` } : {};
-      await axios.delete(`/api/admin/products/${id}`, { headers });
+      await axios.delete(`/admin/products/${id}`, { headers });
       setProducts(products.filter(p => p.id !== id));
     } catch {
       alert('刪除失敗');
@@ -40,7 +40,7 @@ const AdminProducts = () => {
     try {
       const user = authService.getCurrentUser();
       const headers = user ? { Authorization: `Bearer ${user.token}` } : {};
-      await axios.put(`/api/admin/products/${editProduct.id}`, editProduct, { headers });
+      await axios.put(`/admin/products/${editProduct.id}`, editProduct, { headers });
       setProducts(products.map(p => p.id === editProduct.id ? editProduct : p));
       setEditProduct(null);
     } catch {

@@ -11,6 +11,7 @@ function AddPromotionForm() {
   const [stores, setStores] = useState([]);
   const [product, setProduct] = useState(null);
   const [productError, setProductError] = useState("");
+  const [useTime, setUseTime] = useState(false);
   const [form, setForm] = useState({
     storeId: "",
     type: "DISCOUNT",
@@ -20,6 +21,8 @@ function AddPromotionForm() {
     hasTimeLimit: true,
     startTime: "",
     endTime: "",
+    startDate: "",
+    endDate: "",
   });
   const [existingPromotion, setExistingPromotion] = useState(null);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
@@ -39,13 +42,24 @@ function AddPromotionForm() {
       return;
     }
 
+    let startTime = null, endTime = null;
+    if (form.hasTimeLimit) {
+      if (useTime) {
+        startTime = form.startTime || null;
+        endTime = form.endTime || null;
+      } else {
+        startTime = form.startDate ? form.startDate + 'T00:00:00' : null;
+        endTime = form.endDate ? form.endDate + 'T23:59:59' : null;
+      }
+    }
+
     const payload = {
       ...form,
       productId: id,
       discountValue: form.type === "DISCOUNT" ? parseInt(form.discountValue) : null,
       finalPrice: form.type === "SPECIAL" ? parseInt(form.finalPrice) : null,
-      startTime: form.hasTimeLimit ? form.startTime || null : null,
-      endTime: form.hasTimeLimit ? form.endTime || null : null,
+      startTime,
+      endTime,
     };
 
     try {
@@ -188,21 +202,54 @@ function AddPromotionForm() {
         {form.hasTimeLimit && (
           <>
             <div>
-              <label>優惠開始時間：</label>
-              <input
-                type="datetime-local"
-                value={form.startTime}
-                onChange={(e) => setForm({ ...form, startTime: e.target.value })}
-              />
+              <label>
+                <input
+                  type="checkbox"
+                  checked={useTime}
+                  onChange={e => setUseTime(e.target.checked)}
+                />
+                需要精確到小時分鐘
+              </label>
             </div>
-            <div>
-              <label>優惠結束時間：</label>
-              <input
-                type="datetime-local"
-                value={form.endTime}
-                onChange={(e) => setForm({ ...form, endTime: e.target.value })}
-              />
-            </div>
+            {useTime ? (
+              <>
+                <div>
+                  <label>優惠開始時間：</label>
+                  <input
+                    type="datetime-local"
+                    value={form.startTime}
+                    onChange={e => setForm({ ...form, startTime: e.target.value })}
+                  />
+                </div>
+                <div>
+                  <label>優惠結束時間：</label>
+                  <input
+                    type="datetime-local"
+                    value={form.endTime}
+                    onChange={e => setForm({ ...form, endTime: e.target.value })}
+                  />
+                </div>
+              </>
+            ) : (
+              <>
+                <div>
+                  <label>優惠開始日期：</label>
+                  <input
+                    type="date"
+                    value={form.startDate}
+                    onChange={e => setForm({ ...form, startDate: e.target.value })}
+                  />
+                </div>
+                <div>
+                  <label>優惠結束日期：</label>
+                  <input
+                    type="date"
+                    value={form.endDate}
+                    onChange={e => setForm({ ...form, endDate: e.target.value })}
+                  />
+                </div>
+              </>
+            )}
           </>
         )}
 

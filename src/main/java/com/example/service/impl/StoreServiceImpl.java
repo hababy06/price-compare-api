@@ -43,4 +43,14 @@ public class StoreServiceImpl implements StoreService {
     public void delete(Long id) {
         storeRepository.deleteById(id);
     }
+
+    @Override
+    public StoreDto update(Long id, StoreDto update) {
+        Store store = storeRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("找不到商店"));
+        store.setName(update.getName());
+        store.setAddress(update.getAddress());
+        store.setLogoUrl(update.getLogoUrl());
+        return modelMapper.map(storeRepository.save(store), StoreDto.class);
+    }
 }
